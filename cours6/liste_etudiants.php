@@ -16,13 +16,13 @@
                     echo '<div class="panel-heading">Etudiant id='.$val["id"]."</div>\r\n";
                     echo "<div class='panel-body'>\r\n";
                         $url="\"modification_etudiant_form_envoi.php\"";
-                        echo "<form method='get' action=".$url." class='form-group'>\r\n";
+                        echo "<form method='get' action=".$url." class='form-group col-xs-3'>\r\n";
                             echo "<input type='text' name='id' value=\"".$val["id"]."\" hidden />\r\n";
                             echo "<label>Nom : ".$val["family_name"]."</label><br/>\r\n";
                             echo "<label>Prénom : ".$val["first_name"]."</label><br/>\r\n";
                             echo "<label>Date de naissance : ".$val["birthdate"]."</label><br/>\r\n";
                             echo "<label>Nombre de cours : ".$val["number_of_courses"]."</label><br/>\r\n";
-                            echo "<button type='submit'>Modifier</button>\r\n";
+                            echo "<button type='submit' class='btn btn-primary'>Modifier</button>\r\n";
                             echo "</form>\r\n";
                 echo "</div>\r\n</div>\r\n";
             }?>
