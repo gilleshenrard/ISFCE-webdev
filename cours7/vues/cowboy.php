@@ -1,0 +1,5 @@
+<h1>Cowboy</h1>
+<img src="./vues/images/cowboy.jpg" alt="./images/cowboy.jpg" />
+<p>Le cow - boy ou cowboy1 (pron. [k b j], de l'anglais cow, « vache », et boy, « garçon »), qui signifie vacher ou bouvier en français, est un garçon de ferme s'occupant du bétail bovin dans les pays anglo - saxons de grands espaces comme le Far West américain et l'Outback australien. Cette profession dérive de celle de vaquero, en vogue au Nouveau-Mexique aux XVIe siècle et XVIIe siècle, mais s'en distingue en ce sens que ces derniers ne sont pas des ouvriers agricoles. En effet, 
+au XIXe siècle les élevages de l'Ouest alimentaient l'ensemble du pays ; le cow-boy avait donc pour 
+mission de conduire les bêtes à travers le sud des Grandes Plaines, en l'absence de chemin de fer. Cette transhumance, qui cessa aux alentours de 1890, a donné du cow-boy une image d'homme libre, solitaire et nomade, en certains points éloignée de la réalité.</p>

@@ -1,0 +1,2 @@
+<h1>Saloon</h1>
+<p>Un bar se caractérise par son ambiance. Du très classique « bistrot » français, belge ou suisse, certains propriétaires de bar peuvent choisir de créer une ambiance particulière pour leur établissement. Ils pourront s'inspirer de concepts étrangers, pub, maquis, etc. Ils peuvent également donner, avec le mobilier ou la diffusion de musique, donner une ambiance « lounge », c'est-à-dire « relax, confortable et détendu dans un milieu cosy » selon le blogueur Édouard Borie1.</p>
