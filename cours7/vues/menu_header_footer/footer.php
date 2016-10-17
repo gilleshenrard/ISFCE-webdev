@@ -1,3 +1,3 @@
 <footer>
-    <h1>ISFCE</h1>
+    <h1>ISFCE - <?php echo $_COOKIE["nbvisites"];?> visites</h1>
 </footer>
