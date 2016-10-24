@@ -4,16 +4,28 @@ session_start();
 
 $choix="default";
 if (isset($_GET["choix"])) {
-    $choix=$_GET["choix"];
+        $choix=$_GET["choix"];
+}
     
-    if(isset($_POST["region"])){
-        setcookie('region', $_POST["region"], time()+60*60*24*10);
+if(isset($_POST["region"])){
+    setcookie('region', $_POST["region"], time()+60*60*24*10);
+}
+if(isset($_POST["vignoble"])){
+    setcookie('vignoble', $_POST["vignoble"], time()+60*60*24*10);
+}
+if(isset($_POST["annee"])){
+    setcookie('annee', $_POST["annee"], time()+60*60*24*10);
+}
+if($_POST["choix"]=="deco"){
+   
+}
+else{
+    if (isset($_POST["login"])) {
+        $_SESSION["login"]=$_POST["login"];
     }
-    if(isset($_POST["vignoble"])){
-        setcookie('vignoble', $_POST["vignoble"], time()+60*60*24*10);
-    }
-    if(isset($_POST["annee"])){
-        setcookie('annee', $_POST["annee"], time()+60*60*24*10);
+
+    if (isset($_POST["password"])) {
+        $_SESSION["password"]=$_POST["password"];
     }
 }
 ?>
