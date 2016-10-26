@@ -1,6 +1,7 @@
 <?php
 if(isset($_POST)){
     include 'connexion_db.php';
+    $dbh = db_connection();
     $id = $_POST["id"];
     $lname = $_POST["lname"];
     $fname = $_POST["fname"];
