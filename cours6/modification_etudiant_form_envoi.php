@@ -1,4 +1,5 @@
 <?php include './connexion_db.php';
+$dbh = db_connection();
 $sql = "SELECT * FROM students WHERE id = ".$_GET["id"].";";
 $sth = $dbh->query($sql);
 $stud = $sth->fetch(PDO::FETCH_BOTH);
