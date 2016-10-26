@@ -1,6 +1,7 @@
 <?php
 if(isset($_POST)){
     include 'connexion_db.php';
+    $dbh = db_connect();
     $lname = $_POST["lname"];
     $fname = $_POST["fname"];
     $bdate = $_POST["bdate"];
