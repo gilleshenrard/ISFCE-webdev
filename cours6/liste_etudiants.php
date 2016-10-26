@@ -7,6 +7,7 @@
     <body>
         <h1>Liste des étudiants en DB</h1>
         <?php include 'connexion_db.php';
+            $dbh = db_connect();
             $sql = "SELECT * FROM students";
             $sth = $dbh->query($sql);
             $students = $sth->fetchAll(PDO::FETCH_ASSOC);
