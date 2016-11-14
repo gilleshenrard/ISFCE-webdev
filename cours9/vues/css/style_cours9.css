@@ -1,0 +1,147 @@
+
+html { 
+    background-color: black;
+    /*background-image: url(../images/grappe.png);*/
+    background-size: 100%;
+    background-repeat: repeat; 
+    background-position: left top;
+}
+
+body {
+    background-color : darkorange;
+    min-height: 100%;  
+    width: 70%;
+    margin: auto;    
+    text-align: justify;
+    padding-left : 20px;
+    padding-right: 20px;
+    padding-top : 10px;
+    padding-bottom : 10px;
+}
+h1 {
+    text-align: center;
+}
+
+
+h2 {
+    text-decoration: underline;
+}
+p {
+    font-family: "Times New Roman";
+    font-size: 16px;
+}
+
+article {
+    background-color: burlywood;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin: 0 0 20px 2px;
+    border-left: 2px dotted #b2a497;
+}
+
+article h1 {
+    background-color : orange;
+    border : 1px dashed;
+    margin-top:5px;
+    padding-top : 5px;
+    padding-bottom : 5px;
+    margin-top : 25px;
+
+}
+
+
+
+article h2 {
+    text-decoration: none;
+}
+
+img {
+    height: 200px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+
+table {
+    border-collapse : collapse; 
+}
+
+td {
+    border: 1px solid black;
+    padding:10px;
+
+}
+
+header, footer {
+    background-color: blue;
+    width:100%;
+    text-align: center;
+    color : white;
+
+}
+
+header {
+    /*height:60px;*/
+}
+
+header h1 {
+    margin : 0 0 0 0;
+    padding : 10px 10px 10px 10px;
+}
+
+header img {
+    height:50px;
+}
+
+footer {
+    margin-top : 40px;
+}
+
+footer img {
+    height:auto;
+}
+
+footer h1 {
+    margin : 0 0 0 0;
+    padding : 10px 10px 10px 10px;
+}
+nav {
+    margin-bottom: 40px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+nav ul li {
+    float: left;
+}
+
+nav ul li a {
+    display:inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    background-color: #111;
+}
+
+
+form {
+    /*background-color: grey;*/
+    border : 0px;
+    border-color:black;
+    margin-top: 10px;
+}
+
+fieldset {
+    background-color: burlywood;
+}
