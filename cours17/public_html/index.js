@@ -1,0 +1,1 @@
+var result = prompt("Quel est le cours actuel?");
