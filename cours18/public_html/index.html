@@ -13,12 +13,16 @@
         <div class="container">
             <div class="jumbotron">
                 <h1>JavaScript</h1>
-                <p>Manipulation du Document Object Model DOM</p>
+                <p class="parag">Manipulation du Document Object Model DOM</p>
             </div>
             <h1 id="titre1">Premier exercice JavaScript</h1>
             <a id="url1" href="http://www.isfce.org">Le site de l'ISFCE.</a>
             
-            <!-- Compléter le site -->
+            <ul>
+                <li name="test">First</li>
+                <li>Second</li>
+                <li>Third</li>
+            </ul>
 
 
 
@@ -26,21 +30,37 @@
 
         <script type="text/javascript">
             //  Tous vos scripts seront écrits ici
-            
             // PARTIE 1
-            var element1 = document.getElementById("titre1");
-            alert("Exercice 1 l'élément HTML h1 : " + element1);
-            var element2 = document.getElementById("url1");
-            alert("Exercice 1 l'élément HTML a : " + element2);
+            //var element1 = document.getElementById("titre1");
+            //alert("Exercice 1 l'élément HTML h1 : " + element1);
+            //var element2 = document.getElementById("url1");
+            //alert("Exercice 1 l'élément HTML a : " + element2);
 
             // PARTIE 2
-            // à faire
-
+            var listelem = document.getElementsByTagName("li");
+            console.log(listelem);
+            for(var li=0 ; li<listelem.length ; li++){
+                listelem[li].setAttribute("style", "font-weight:bold;");
+            }
 
             // PARTIE 3
-            // à faire
-             
-            // ...
+            var listelem = document.getElementsByName("test");
+            console.log(listelem);
+            for(var li=0 ; li<listelem.length ; li++){
+                listelem[li].setAttribute("style", "color:rgba(255,0,0, 1);");
+            }
+
+            // PARTIE 4
+            var listelem = document.querySelector(".parag");
+            console.log(listelem);
+            listelem.textContent = listelem.textContent.toString().replace("Document", "truc");
+
+            // PARTIE 5
+            var listelem = document.querySelectorAll("li");
+            console.log(listelem);
+            for(var li=0 ; li<listelem.length ; li++){
+                listelem[li].textContent = "Hell yeah : " + listelem[li].textContent.toString();
+            }
 
 
         </script>
