@@ -1,12 +1,10 @@
+<?php
+$page = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_STRING);
+?>
+
 <!DOCTYPE html>
 
-<!--
-Fait par Gilles Henrard (02/2017)
-Template Bootstrap de base récupéré sur http://getbootstrap.com/examples/jumbotron/
-Bibliothèque Bootstrap récupérée sur https://www.bootstrapcdn.com/
--->
-
-<html lang="en">
+<html lang="fr">
     <head>
         <meta charset="utf-8" />
         <title>Gilles Henrard</title>
@@ -14,16 +12,31 @@ Bibliothèque Bootstrap récupérée sur https://www.bootstrapcdn.com/
     </head>
 
     <body>
-        <?php include "./vues/menu.php";?>
-        <?php include './vues/header.php';?>
+        <?php include "./vues/menu_header_footer/menu.php";?>
+        <?php include './vues/menu_header_footer/header.php';?>
 
         <div class="container">
             <div class="row">
+                <?php switch ($page) {
+                    case null:  //Home
+                        break;
+                    
+                    case "list_car":    //
+                        include './vues/liste_voitures.php';
+                        break;
+                    
+                    case "list_fix":
+                        //include './vues/liste_voitures.php';
+                        break;
+
+                    default:
+                        break;
+                }?>
             </div>
         </div>
 
         <hr>
 
-        <?php include './vues/footer.php';?>
+        <?php include './vues/menu_header_footer/footer.php';?>
     </body>
 </html>
