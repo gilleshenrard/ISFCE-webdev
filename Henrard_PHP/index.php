@@ -1,5 +1,6 @@
 <?php
 $page = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_STRING);
+$id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_STRING);
 ?>
 
 <!DOCTYPE html>
@@ -21,12 +22,12 @@ $page = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_STRING);
                     case null:  //Home
                         break;
                     
-                    case "list_car":    //
+                    case "list_car":    //liste de voitures
                         include './vues/liste_voitures.php';
                         break;
                     
-                    case "list_fix":
-                        //include './vues/liste_voitures.php';
+                    case "vehicle":    //page d'un véhicule spécifique
+                        include './vues/vehicule.php';
                         break;
 
                     default:

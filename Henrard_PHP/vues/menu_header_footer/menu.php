@@ -9,7 +9,6 @@
         <!--Barre de navigation (liens, ajoutent un header GET 'page')-->
         <ul class="nav navbar-nav">
             <li><a href="?page=list_car">Véhicules</a></li>
-            <li><a href="?page=list_fix">Réparations</a></li>
         </ul>
         
         <!--Encart de connexion-->
