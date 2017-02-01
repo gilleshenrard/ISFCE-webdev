@@ -26,6 +26,10 @@ $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_STRING);
                 include './vues/vehicule.php';
                 break;
 
+            case "reparation":    //page d'une réparation spécifique
+                include './vues/reparation.php';
+                break;
+
             default:
                 break;
         }?>
