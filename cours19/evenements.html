@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>JavaScript - événements</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <div class="container">
+
+            <div class="jumbotron" id="jumbotron1" onclick="alert('Voici le contenu HTML du jumbotron :' + getElementById('jumbotron1').innerHTML);">
+                <h1>Les animaux</h1>
+            </div>
+
+            <h2>Photos</h2>
+            <div class="row">
+                <img id="img1" class="col-xs-4" src="images/chien1.jpg"/>
+                <img class="col-xs-4" src="images/chien1.jpg"/>
+                <img class="col-xs-4" src="images/chien1.jpg"/>
+            </div> 
+
+            <h2> Enregistrer un animal</h2>
+            <span id="span1">[ Le formulaire n'a pas encore été envoyé ! ]</span>
+            <form id="form1" role="form" action="http://www.isfce.org" method="GET">
+                <div class="form-group">
+                    <label for="espece">Quelle est l'espèce ?</label>
+                    <input type="text" class="form-control" id="espece" name="espece">
+                </div>
+                <div class="form-group">
+                    <label for="nom">Nom de l'animal</label>
+                    <input type="text" class="form-control" id="nom" name="nom">
+                </div>
+                <button type="submit" class="btn btn-default">Envoyer le formulaire</button>
+            </form>
+
+            <h2>Les boutons</h2>
+            <div class="btn-group">
+                <button id="button1" type="button" class="btn btn-primary">Simple clic</button>
+                <button id="button2" type="button" class="btn btn-primary">Double clic</button>
+                <button id="button3" type="button" class="btn btn-primary">Survol de la souris</button>
+            </div>
+
+            <h2>Le tableau des vétérinaires</h2>
+            <table id="table1" class="table">
+                <thead id="thead1">
+                    <tr>
+                        <th>Firstname</th>
+                        <th>Lastname</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>John</td>
+                        <td>Doe</td>
+                        <td>john@example.com</td>
+                    </tr>
+                    <tr>
+                        <td>Mary</td>
+                        <td>Moe</td>
+                        <td>mary@example.com</td>
+                    </tr>
+                    <tr>
+                        <td>July</td>
+                        <td>Dooley</td>
+                        <td>july@example.com</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+
+
+        <script>
+            document.getElementById("img1").onclick = function(){
+                this.src='images/chat1.jpg';
+            };
+            
+            document.getElementById("form1").onsubmit = function(){
+                alert("Vous avez cliqué pour envoyer le formulaire!");
+                document.getElementById("span1").value = "[ Merci d'avoir envoyé le formulaire! ]";
+                return false;
+            };
+            
+            document.getElementById("button1").addEventListener("click", function(){
+                var titles = document.getElementsByTagName("h2");
+                for(i in titles){
+                    titles[i].innerHTML = i + " " + titles[i].innerHTML;
+                }
+            });
+            
+            function gestionDuBouton2(){
+                alert("vous avez double cliqué sur le bouton 2!");
+            }
+            
+            document.getElementById("button2").addEventListener('dblclick', gestionDuBouton2, false) ;
+            document.getElementById("button3").addEventListener('mouseleave', function(){
+                alert("Vous avez survolé le bouton 3!");
+            }, false) ;
+            
+            document.getElementById("table1").addEventListener("dblclick", function(){
+                alert("click table");
+            }, false);
+            
+            document.getElementById("thead1").addEventListener("dblclick", function(){
+                alert("click thead");
+            }, false);
+            
+            
+            
+        </script>
+
+    </body>
+</html>
