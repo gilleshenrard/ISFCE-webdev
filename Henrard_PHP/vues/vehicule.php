@@ -1,5 +1,5 @@
 <div class="container col-md-5">
-    <form method="post" target="#">
+    <form method="post" action="#">
         <div class="form-group">
             <label for="id">ID</label>
             <input type="text" id="id" name="id" value="1" class="form-control" />
