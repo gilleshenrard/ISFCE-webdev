@@ -1,6 +1,8 @@
 <?php
 $page = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_STRING);
 $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_STRING);
+
+include './controleurs/db_connect.php';
 ?>
 
 <!DOCTYPE html>
