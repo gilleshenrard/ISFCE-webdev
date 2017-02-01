@@ -8,7 +8,7 @@ class Db{
     public function connect(){
         // if no connection exist to the specified database, create a one
         if (!isset(Db::$connection)) {
-            Db::$connection = new PDO('dsn = mysql:host=localhost;dbname=garage;charset=UTF8', 'root');
+            Db::$connection = new PDO('mysql:host=localhost;dbname=garage;charset=UTF8', 'root');
         }
         //return the PDO instance to the database (singleton)
         return Db::$connection;
