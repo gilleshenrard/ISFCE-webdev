@@ -11,8 +11,13 @@
 
 <div class="container">
     <div class="list-group">
-        <a href="?page=vehicle&id=1" class="list-group-item">Car1</a>
-        <a href="?page=vehicle&id=2" class="list-group-item">Car2</a>
-        <a href="?page=vehicle&id=3" class="list-group-item">Car3</a>
+        <!--a href="?page=vehicle&id=1" class="list-group-item">Car1</a-->
+        <?php
+            include './controleurs/controleur_vehicules.php';
+            $vehicles = make_list();
+            foreach ($vehicles as $v) {
+                print '<a href="?page=vehicle&id=1" class="list-group-item">'.$v['plaque'].'</a>';
+            }
+        ?>
     </div>
 </div>
