@@ -16,21 +16,19 @@ $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_STRING);
         <?php include "./vues/menu_header_footer/menu.php";?>
         <?php include './vues/menu_header_footer/header.php';?>
 
-        <div class="container">
-                <?php switch ($page) {
-                    case null:  //Home
-                    case "list_car":    //liste de voitures
-                        include './vues/liste_voitures.php';
-                        break;
-                    
-                    case "vehicle":    //page d'un véhicule spécifique
-                        include './vues/vehicule.php';
-                        break;
+        <?php switch ($page) {
+            case null:  //Home
+            case "list_car":    //liste de voitures
+                include './vues/liste_voitures.php';
+                break;
 
-                    default:
-                        break;
-                }?>
-        </div>
+            case "vehicle":    //page d'un véhicule spécifique
+                include './vues/vehicule.php';
+                break;
+
+            default:
+                break;
+        }?>
 
         <hr>
 
