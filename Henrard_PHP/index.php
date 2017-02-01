@@ -17,11 +17,8 @@ $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_STRING);
         <?php include './vues/menu_header_footer/header.php';?>
 
         <div class="container">
-            <div class="row">
                 <?php switch ($page) {
                     case null:  //Home
-                        break;
-                    
                     case "list_car":    //liste de voitures
                         include './vues/liste_voitures.php';
                         break;
@@ -33,7 +30,6 @@ $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_STRING);
                     default:
                         break;
                 }?>
-            </div>
         </div>
 
         <hr>

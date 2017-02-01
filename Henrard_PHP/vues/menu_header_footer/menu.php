@@ -7,9 +7,9 @@
         </div>
         
         <!--Barre de navigation (liens, ajoutent un header GET 'page')-->
-        <ul class="nav navbar-nav">
+        <!--ul class="nav navbar-nav">
             <li><a href="?page=list_car">Véhicules</a></li>
-        </ul>
+        </ul-->
         
         <!--Encart de connexion-->
         <div id="navbar" class="navbar-collapse collapse">
