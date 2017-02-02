@@ -22,7 +22,7 @@ $page = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_STRING);
                 break;
 
             case "vehicle":    //page d'un véhicule spécifique
-                include './vues/vehicule.php';
+                include './controleurs/controleur_vehicule.php';
                 break;
 
             case "reparation":    //page d'une réparation spécifique
