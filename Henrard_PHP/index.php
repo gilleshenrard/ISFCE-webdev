@@ -1,6 +1,5 @@
 <?php
 $page = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_STRING);
-$id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_STRING);
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +18,7 @@ $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_STRING);
         <?php switch ($page) {
             case null:  //Home
             case "list_car":    //liste de voitures
-                include './vues/liste_voitures.php';
+                include './controleurs/controleur_vehicules.php';
                 break;
 
             case "vehicle":    //page d'un véhicule spécifique
