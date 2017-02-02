@@ -23,10 +23,10 @@ class Db{
 
         // execution et retour des résultats
         $stmt->execute();
-        return $stmt->fetch();
+        return $stmt->fetchall();
     }
     
-    public function select_vehicleID($str){
+    public function searchBy_vehicleID($str){
         // query à exécuter
         $sql = "SELECT * ";
         $sql.= "FROM vehicules ";
@@ -38,6 +38,6 @@ class Db{
 
         // execution et retour des résultats
         $stmt->execute();
-        return $stmt->fetch();
+        return $stmt->fetch(PDO::FETCH_LAZY);
     }
 }
