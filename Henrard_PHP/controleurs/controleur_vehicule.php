@@ -6,6 +6,7 @@ try{
     $database = new Db();
     $database->connect();
     $v = $database->searchBy_ID("vehicules", $id);
+    $rep = $database->searchBy_FK("reparations", $id);
     include './vues/vehicule.php';
 }
 catch (PDOException $e){

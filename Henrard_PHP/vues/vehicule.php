@@ -44,9 +44,13 @@
     <div class="container col-md-5">
         <h1>Réparations</h1>
         <div class="list-group">
-            <a href="?page=reparation&id=1" class="list-group-item">rep1</a>
-            <a href="?page=reparation&id=2" class="list-group-item">rep2</a>
-            <a href="?page=reparation&id=3" class="list-group-item">rep3</a>
+            <?php
+                foreach ($rep as $r) {
+                    if (isset($r['intervention']) && isset($r['id'])) {
+                        print '<a href="?page=reparation&id='.$r['id'].'" class="list-group-item">'.$r['intervention'].'</a>';
+                    }
+                }
+            ?>
         </div>
     </div>
 </div>

@@ -21,8 +21,7 @@ class Db{
         
         // query à exécuter
         $sql = "SELECT * ";
-        $sql.= "FROM ";
-        $sql.= $table;
+        $sql.= "FROM ".$table;
 
         $stmt = Db::$connection->prepare($sql);
 
@@ -37,8 +36,7 @@ class Db{
         }
         // query à exécuter
         $sql = "SELECT * ";
-        $sql.= "FROM ";
-        $sql.= $table;
+        $sql.= "FROM ".$table;
         $sql.= " WHERE :id = id ";
 
         // preparation de la query (sécurisée)
@@ -48,5 +46,23 @@ class Db{
         // execution et retour des résultats
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_LAZY);
+    }
+    
+    public function searchBy_FK($table, $fk){
+        if (!in_array($table, array("vehicules", "reparations", "utilisateurs"))) {
+            throw new Exception("Mauvaise valeur pour la table recherchée!");
+        }
+        
+        // query à exécuter
+        $sql = "SELECT * ";
+        $sql.= "FROM ".$table;
+        $sql.= " WHERE vehicule_FK LIKE :fk";
+
+        $stmt = Db::$connection->prepare($sql);
+        $stmt->bindParam(":fk", $fk);
+
+        // execution et retour des résultats
+        $stmt->execute();
+        return $stmt->fetchall();
     }
 }
