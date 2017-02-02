@@ -12,10 +12,10 @@ $page = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_STRING);
     </head>
 
     <body>
-        <?php include "./vues/menu_header_footer/menu.php";?>
-        <?php include './vues/menu_header_footer/header.php';?>
+        <?php include "./vues/menu_header_footer/menu.php";
+        include './vues/menu_header_footer/header.php';
 
-        <?php switch ($page) {
+        switch ($page) {
             case null:  //Home
             case "list_car":    //liste de voitures
                 include './controleurs/controleur_vehicules.php';
@@ -26,15 +26,15 @@ $page = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_STRING);
                 break;
 
             case "reparation":    //page d'une réparation spécifique
-                include './vues/reparation.php';
+                include './controleurs/controleur_reparation.php';
                 break;
 
             default:
                 break;
-        }?>
+        }
 
-        <hr>
+        echo "<hr>";
 
-        <?php include './vues/menu_header_footer/footer.php';?>
+        include './vues/menu_header_footer/footer.php';?>
     </body>
 </html>

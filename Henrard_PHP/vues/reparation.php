@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <form method="get" action="?page=vehicle&id=1">
+        <form method="get" action="?page=vehicle&id=<?php echo $r['vehicule_FK'];?>">
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">Retour à la voiture</button>
             </div>
@@ -11,32 +11,22 @@
         <form method="post" action="#">
             <div class="form-group">
                 <label for="id">ID</label>
-                <input type="text" id="id" name="id" value="1" class="form-control" />
+                <input type="text" id="id" name="id" value="<?php echo $r['id'];?>" class="form-control" />
             </div>
 
             <div class="form-group">
-                <label for="numero_chassis">Numéro de chassis</label>
-                <input type="text" id="numero_chassis" name="numero_chassis" value="12321-32123-11223-33221" class="form-control" />
+                <label for="intervention">Intervention</label>
+                <input type="text" id="intervention" name="intervention" value="<?php echo $r['intervention'];?>" class="form-control" />
             </div>
 
-            <div class="form-group">    
-                <label for="plaque">Numéro de plaque</label>
-                <input type="text" id="plaque" name="plaque" value="1-DHF-753" class="form-control" />
+            <div class="form-group">
+                <label for="description">Description</label>
+                <input type="text" id="description" name="description" value="<?php echo $r['description'];?>" class="form-control" />
             </div>
 
-            <div class="form-group">    
-                <label for="marque">Marque</label>
-                <input type="text" id="marque" name="marque" value="Peugeot" class="form-control" />
-            </div>
-
-            <div class="form-group">    
-                <label for="modele">Modèle</label>
-                <input type="text" id="modele" name="modele" value="308" class="form-control" />
-            </div>
-
-            <div class="form-group">    
-                <label for="type">Type</label>
-                <input type="text" id="type" name="type" value="Voiture" class="form-control" />
+            <div class="form-group">
+                <label for="date">Date</label>
+                <input type="text" id="date" name="date" value="<?php echo $r['date'];?>" class="form-control" />
             </div>
 
             <fieldset disabled>
