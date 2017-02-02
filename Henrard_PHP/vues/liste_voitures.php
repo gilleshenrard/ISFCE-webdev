@@ -16,7 +16,9 @@
             include './controleurs/controleur_vehicules.php';
             $vehicles = make_list();
             foreach ($vehicles as $v) {
-                print '<a href="?page=vehicle&id=1" class="list-group-item">'.$v['plaque'].'</a>';
+                if (isset($v['plaque']) && isset($v['id'])) {
+                    print '<a href="?page=vehicle&id='.$v['id'].'" class="list-group-item">'.$v['plaque'].'</a>';
+                }
             }
         ?>
     </div>
