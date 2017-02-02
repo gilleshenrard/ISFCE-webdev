@@ -14,10 +14,15 @@ class Db{
         return Db::$connection;
     }
 
-    public function list_vehicles(){
+    public function list_table($table){
+        if (!in_array($table, array("vehicules", "reparations", "utilisateurs"))) {
+            throw new Exception("Mauvaise valeur pour la table recherchée!");
+        }
+        
         // query à exécuter
         $sql = "SELECT * ";
-        $sql.= "FROM vehicules ";
+        $sql.= "FROM ";
+        $sql.= $table;
 
         $stmt = Db::$connection->prepare($sql);
 
