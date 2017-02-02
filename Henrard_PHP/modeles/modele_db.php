@@ -31,11 +31,15 @@ class Db{
         return $stmt->fetchall();
     }
     
-    public function searchBy_vehicleID($str){
+    public function searchBy_ID($table, $str){
+        if (!in_array($table, array("vehicules", "reparations", "utilisateurs"))) {
+            throw new Exception("Mauvaise valeur pour la table recherchée!");
+        }
         // query à exécuter
         $sql = "SELECT * ";
-        $sql.= "FROM vehicules ";
-        $sql.= "WHERE :id = id ";
+        $sql.= "FROM ";
+        $sql.= $table;
+        $sql.= " WHERE :id = id ";
 
         // preparation de la query (sécurisée)
         $stmt = Db::$connection->prepare($sql);
