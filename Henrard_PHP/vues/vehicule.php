@@ -1,10 +1,12 @@
 <div class="container">
     <div class="container col-md-5">
         <form method="post" action="#">
-            <div class="form-group">
-                <label for="id">ID</label>
-                <input type="text" id="id" name="id" value="<?php echo $v['id'];?>" class="form-control" />
-            </div>
+            <fieldset disabled>
+                <div class="form-group">
+                    <label for="id">ID</label>
+                    <input type="text" id="id" name="id" value="<?php echo $v['id'];?>" class="form-control" />
+                </div>
+            </fieldset>
 
             <div class="form-group">
                 <label for="numero_chassis">Numéro de chassis</label>
@@ -31,11 +33,11 @@
                 <input type="text" id="type" name="type" value="<?php echo $v['type'];?>" class="form-control" />
             </div>
 
-            <fieldset disabled>
+            <!--fieldset disabled-->
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">Valider</button>
                 </div>
-            </fieldset>
+            <!--/fieldset-->
         </form>
     </div>
 

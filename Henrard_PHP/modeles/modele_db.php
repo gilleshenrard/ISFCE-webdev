@@ -65,4 +65,20 @@ class Db{
         $stmt->execute();
         return $stmt->fetchall();
     }
+    
+    public function update_repa($array){
+        $sql = "UPDATE vehicules ";
+        $sql.= "SET numero_chassis = :num_ch, plaque = :pl, marque = :ma, modele = :mo, type = :ty ";
+        $sql.= "WHERE id LIKE :id";
+        
+        $stmt = Db::$connection->prepare($sql);
+        $stmt->bindParam(":num_ch", $array['numero_chassis']);
+        $stmt->bindParam(":pl", $array['plaque']);
+        $stmt->bindParam(":ma", $array['marque']);
+        $stmt->bindParam(":mo", $array['modele']);
+        $stmt->bindParam(":ty", $array['type']);
+        $stmt->bindParam(":id", $array['id']);
+        
+        $stmt->execute();
+    }
 }
