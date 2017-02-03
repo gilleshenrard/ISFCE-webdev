@@ -8,8 +8,8 @@ try{
     include './vues/liste_vehicules.php';
 }
 catch (PDOException $e){
-    print "<h1>ERROR : ".$e->getMessage()."</h1>";
+    echo "<h1>ERROR : ".$e->getMessage()."</h1>";
 }
 catch (Exception $e){
-    print "<h1>ERROR : ".$e->getMessage()."</h1>";
+    echo "<h1>ERROR : ".$e->getMessage()."</h1>";
 }

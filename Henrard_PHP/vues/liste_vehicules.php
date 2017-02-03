@@ -14,7 +14,7 @@
         <?php
             foreach ($vehicles as $v) {
                 if (isset($v['plaque']) && isset($v['id'])) {
-                    print '<a href="?page=vehicle&id='.$v['id'].'" class="list-group-item">'.$v['plaque'].'</a>';
+                    echo '<a href="?page=vehicle&id='.$v['id'].'" class="list-group-item">'.$v['plaque'].'</a>';
                 }
             }
         ?>
