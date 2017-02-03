@@ -48,6 +48,24 @@ class Db{
         return $stmt->fetch(PDO::FETCH_LAZY);
     }
     
+    public function searchBy_plaque($table, $str){
+        if (!in_array($table, array("vehicules", "reparations", "utilisateurs"))) {
+            throw new Exception("Mauvaise valeur pour la table recherchée!");
+        }
+        // query à exécuter
+        $sql = "SELECT * ";
+        $sql.= "FROM ".$table;
+        $sql.= " WHERE :pl = plaque ";
+
+        // preparation de la query (sécurisée)
+        $stmt = Db::$connection->prepare($sql);
+        $stmt->bindParam(":pl", $str);
+
+        // execution et retour des résultats
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_LAZY);
+    }
+    
     public function searchBy_FK($table, $fk){
         if (!in_array($table, array("vehicules", "reparations", "utilisateurs"))) {
             throw new Exception("Mauvaise valeur pour la table recherchée!");
