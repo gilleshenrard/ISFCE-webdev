@@ -9,10 +9,12 @@
 
     <div class="col-md-5 row">
         <form method="post" action="#">
-            <div class="form-group">
-                <label for="id">ID</label>
-                <input type="text" id="id" name="id" value="<?php echo $r['id'];?>" class="form-control" />
-            </div>
+            <fieldset disabled>
+                <div class="form-group">
+                    <label for="id">ID</label>
+                    <input type="text" id="id" name="id" value="<?php echo $r['id'];?>" class="form-control" />
+                </div>
+            </fieldset>
 
             <div class="form-group">
                 <label for="intervention">Intervention</label>
@@ -28,12 +30,14 @@
                 <label for="date">Date</label>
                 <input type="text" id="date" name="date" value="<?php echo $r['date'];?>" class="form-control" />
             </div>
+            
+            <input type="text" name="vehicule_FK" value="<?php echo $r['vehicule_FK'];?>" hidden="true"/>
 
-            <fieldset disabled>
+            <!--fieldset disabled-->
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">Valider</button>
                 </div>
-            </fieldset>
+            <!--/fieldset-->
         </form>
     </div>
 </div>
