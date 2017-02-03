@@ -49,7 +49,7 @@
             <?php
                 foreach ($rep as $r) {
                     if (isset($r['intervention']) && isset($r['id'])) {
-                        print '<a href="?page=reparation&id='.$r['id'].'" class="list-group-item">'.$r['intervention'].'</a>';
+                        echo '<a href="?page=reparation&id='.$r['id'].'" class="list-group-item">'.$r['intervention'].'</a>';
                     }
                 }
             ?>
