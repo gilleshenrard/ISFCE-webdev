@@ -23,12 +23,12 @@
 
             <div class="form-group">
                 <label for="description">Description</label>
-                <input type="text" id="description" name="description" value="<?php echo $r['description'];?>" class="form-control" />
+                <textarea rows="5" id="description" name="description" value="<?php echo $r['description'];?>" class="form-control"></textarea>
             </div>
 
             <div class="form-group">
                 <label for="date">Date</label>
-                <input type="text" id="date" name="date" value="<?php echo $r['date'];?>" class="form-control" />
+                <input type="date" id="date" name="date" value="<?php echo $r['date'];?>" class="form-control" />
             </div>
             
             <input type="text" name="vehicule_FK" value="<?php echo $r['vehicule_FK'];?>" hidden="true"/>
