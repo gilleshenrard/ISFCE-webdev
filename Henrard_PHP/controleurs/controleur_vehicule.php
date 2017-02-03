@@ -16,7 +16,7 @@ try{
             'modele' => $post['modele'],
             'type' => $post['type']
         );
-        $database->update_repa($v);
+        $database->update_veh($v);
         $_POST = array();
     }
     else {

@@ -66,7 +66,7 @@ class Db{
         return $stmt->fetchall();
     }
     
-    public function update_repa($array){
+    public function update_veh($array){
         $sql = "UPDATE vehicules ";
         $sql.= "SET numero_chassis = :num_ch, plaque = :pl, marque = :ma, modele = :mo, type = :ty ";
         $sql.= "WHERE id LIKE :id";
@@ -77,6 +77,21 @@ class Db{
         $stmt->bindParam(":ma", $array['marque']);
         $stmt->bindParam(":mo", $array['modele']);
         $stmt->bindParam(":ty", $array['type']);
+        $stmt->bindParam(":id", $array['id']);
+        
+        $stmt->execute();
+    }
+    
+    public function update_repa($array){
+        echo "<h1>BP</h1>";
+        $sql = "UPDATE reparations ";
+        $sql.= "SET intervention = :int, description = :desc, date = :date ";
+        $sql.= "WHERE id LIKE :id";
+        
+        $stmt = Db::$connection->prepare($sql);
+        $stmt->bindParam(":int", $array['intervention']);
+        $stmt->bindParam(":desc", $array['description']);
+        $stmt->bindParam(":date", $array['date']);
         $stmt->bindParam(":id", $array['id']);
         
         $stmt->execute();
