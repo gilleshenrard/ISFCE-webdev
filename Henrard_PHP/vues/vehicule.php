@@ -30,7 +30,12 @@
 
             <div class="form-group">    
                 <label for="type">Type</label>
-                <input type="text" id="type" name="type" value="<?php echo $v['type'];?>" class="form-control" />
+                <select class="form-control" id="type" name="type" value="<?php echo $v['type'];?>">
+                    <option>Voiture</option>
+                    <option>Moto</option>
+                    <option>Camion</option>
+                    <option>Camionette</option>
+                </select>
             </div>
 
             <!--fieldset disabled-->
