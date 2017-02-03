@@ -2,6 +2,7 @@
 $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_STRING);
 $post = filter_input_array(INPUT_POST);
 include_once './modeles/modele_db.php';
+include_once './controleurs/fonctions_vehicule.php';
 
 try{
     $database = new Db();
