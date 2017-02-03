@@ -83,7 +83,6 @@ class Db{
     }
     
     public function update_repa($array){
-        echo "<h1>BP</h1>";
         $sql = "UPDATE reparations ";
         $sql.= "SET intervention = :int, description = :desc, date = :date ";
         $sql.= "WHERE id LIKE :id";
