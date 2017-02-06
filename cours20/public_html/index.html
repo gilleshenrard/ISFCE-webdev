@@ -1,12 +1,34 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
     <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Cours 20 - jQuery</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     </head>
     <body>
-        <div>TODO write content</div>
+        <h1 id="title1">jQuery test</h1>
+        <script type="text/javascript">
+            //at document load
+            $(document).ready(function(){
+                //define multiple event handlers at once (through a list)
+                //WARNING : '#' selects an ID, '.' selects a class and without it, a tag ('<h1>', for instance)
+                $('#title1').on({
+                    //onclick()
+                    'click': function (){
+                        alert("fuck yeah click!");
+                    },
+                    //onMouseover()
+                    'mouseover':function(){
+                        //define several CSS changes through a list
+                        $(this).css({
+                            'background-color':'red',
+                            'font-weight':'2em'
+                        });
+                    }
+                });
+            });
+        </script>
     </body>
 </html>
