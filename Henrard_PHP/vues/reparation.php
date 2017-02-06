@@ -23,7 +23,7 @@
 
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea rows="5" id="description" name="description" value="<?php echo $r['description'];?>" class="form-control"></textarea>
+                <textarea rows="5" id="description" name="description" class="form-control"><?php echo $r['description'];?></textarea>
             </div>
 
             <div class="form-group">
