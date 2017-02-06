@@ -8,7 +8,7 @@ try{
     
     if (!is_null($post)) {
         $v = $database->searchBy_plaque("vehicules", $post['plaque']);
-        var_dump($v);
+        include './controleurs/controleur_vehicule.php';
     }
     else {
        $vehicles =  $database->list_table("vehicules");

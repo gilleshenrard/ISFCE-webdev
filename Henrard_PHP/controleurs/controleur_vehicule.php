@@ -8,7 +8,7 @@ try{
     $database = new Db();
     $database->connect();
 
-    if (!is_null($post)) {
+    if (!is_null($post) and !isset($v)) {
         $v=array(
             'id' => $id,
             'numero_chassis' => $post['numero_chassis'],
@@ -21,7 +21,9 @@ try{
         $_POST = array();
     }
     else {
-        $v = $database->searchBy_ID("vehicules", $id);
+        if (!isset($v)) {
+            $v = $database->searchBy_ID("vehicules", $id);
+        }
     }
     $rep = $database->searchBy_FK("reparations", $id);
     include './vues/vehicule.php';
