@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+    <head>
+        <title>ISFCE JavaScript jQuery DOM</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+    
+    <body class="container">
+        
+        <!-- JUMBOTRON -->
+        <div id="jumbotron" class="jumbotron">
+            <h1>Euro 2016</h1>
+            <h3 id="sous-titre">Tournoi de football remporté par la Belgique</h3>
+        </div>
+
+        <!-- FORMULAIRE PRONOSTIQUE -->
+        <h3>Votre pronostique</h3>
+        <form role="form">
+            <div id="groupe_vainqueur" class="form-group has-feedback">
+                <label for="vainqueur" class="control-label">Equipe vainqueur</label>
+                <input id="vainqueur" type="text" class="form-control has-feedback">
+            </div>
+            <div id="groupe_score" class="form-group">
+                <label for="score" class="control-label">Score de la finale</label>
+                <input id="score" type="text" class="form-control">
+            </div>
+            <button id="bouton_vainqueur" class="btn btn-default">Envoyer</button>
+        </form>
+
+        <!-- IMAGES PAYS BELGIQUE/FRANCE -->
+        <h3>Les pays</h3>
+        <div class="row">
+            <div class="col-sm-6">
+                <h4>Belgique</h4>
+                <img src="images/belgique.jpg" class="img-responsive"/>
+            </div>
+            <div class="col-sm-6">
+                <h4>France</h4>
+                <img src="images/france.jpg" class="img-responsive"/>
+            </div>
+        </div>
+
+        <br/>
+        <button id="bouton_entourer" class="btn btn-default">Entourer les images (ON/OFF)</button>
+
+        <!-- LISTE CALENDRIER DES MATCHS -->
+        <h3 id="titre_calendrier" style="background-color:lightgrey">Calendrier : matchs du samedi 18 juin</h3>
+        <div id="calendrier" style="background-color:lightgreen">
+            <ul>
+                <li>Belgique-Irlande 15h00</li>
+                <li>Islande-Hongrie 18h00</li>
+                <li>Portugal-Autriche 21h00</li>        
+            </ul>
+        </div>
+
+        <!-- TABLEAU CLASSEMENT -->
+        <h3>Classement du groupe C</h3>
+        <table class="table table-bordered">
+            <thead class="bg-primary">
+                <tr>
+                    <th>Equipe</th>
+                    <th>Points</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr id="italie">
+                    <td>Italie</td>
+                    <td>6</td>
+                </tr>
+                <tr id="suede">
+                    <td>Suède</td>
+                    <td>3</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button id="bouton_classement" class="btn btn-success">Mettre le classement à jour</button>
+
+
+        <script>
+            $(document).ready(function () {
+
+                // Toutes vos réponses UNIQUEMENT ICI - N'oubliez pas de sytématiquement utiliser SOURCE/FORMAT dans Netbeans
+				
+				
+				// jQuery GET
+				
+				
+				// jQuery SET
+				
+				
+				
+				// ...
+				
+
+				
+				
+				
+				
+				
+				
+				
+				
+            });
+        </script>
+
+    </body>
+</html>
