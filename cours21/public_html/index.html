@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cerulean/bootstrap.min.css" />
+    </head>
+    <body>
+        <div class="container">
+            <div class="jumbotron">
+                <h1>Jumbotron</h1>
+            </div>
+            <section class="container">
+                <h1>Les boutons</h1>
+                <button id="button1" class="btn btn-primary">Button1</button>
+                <button id="button2" class="btn btn-primary">Button2</button>
+                <button id="button3" class="btn btn-primary">Button3</button>
+                <button id="button4" class="btn btn-primary">Button4</button>
+                <button id="button5" class="btn btn-primary">Button5</button>
+            </section>
+        </div>
+    </body>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $(".jumbotron").click(function(){
+                alert("Yeah click!");
+            });
+        });
+    </script>
+</html>
