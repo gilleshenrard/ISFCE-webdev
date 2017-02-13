@@ -24,9 +24,18 @@
         </div>
     </body>
     <script type="text/javascript">
+        var toggle=0;
+        
         $(document).ready(function(){
             $(".jumbotron").click(function(){
-                alert("Yeah click!");
+                $("#button1").addClass("btn-danger");
+            });
+            
+            $("button").click(function(){
+                var alltext = ["Yeah", "Fuck", "Stop it", "STOOOOOOOOOOOOOOOP"];
+                $(this).text(alltext[toggle]);
+                toggle++;
+                toggle %= alltext.length;
             });
         });
     </script>
