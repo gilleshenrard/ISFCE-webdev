@@ -16,7 +16,7 @@ class Db{
 
     public function list_table($table){
         if (!in_array($table, array("vehicules", "reparations", "utilisateurs"))) {
-            throw new Exception("Mauvaise valeur pour la table recherchée!");
+            throw new Exception("Table ".$table." non-trouvée en base de données");
         }
         
         // query à exécuter
@@ -34,6 +34,7 @@ class Db{
         if (!in_array($table, array("vehicules", "reparations", "utilisateurs"))) {
             throw new Exception("Mauvaise valeur pour la table recherchée!");
         }
+
         // query à exécuter
         $sql = "SELECT * ";
         $sql.= "FROM ".$table;
@@ -55,7 +56,7 @@ class Db{
         // query à exécuter
         $sql = "SELECT * ";
         $sql.= "FROM ".$table;
-        $sql.= " WHERE :pl = plaque ";
+        $sql.= " WHERE :pl LIKE plaque";
 
         // preparation de la query (sécurisée)
         $stmt = Db::$connection->prepare($sql);
