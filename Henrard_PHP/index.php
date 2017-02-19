@@ -15,22 +15,30 @@ $page = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_STRING);
         <?php include "./vues/menu_header_footer/menu.php";
         include './vues/menu_header_footer/header.php';
 
-        switch ($page) {
-            case null:  //Home
-            case "list_car":    //liste de voitures
-                include './controleurs/controleur_vehicules.php';
-                break;
+        try{
+            switch ($page) {
+                case null:  //Home
+                case "list_car":    //liste de voitures
+                    include './controleurs/controleur_vehicules.php';
+                    break;
 
-            case "vehicle":    //page d'un véhicule spécifique
-                include './controleurs/controleur_vehicule.php';
-                break;
+                case "vehicle":    //page d'un véhicule spécifique
+                    include './controleurs/controleur_vehicule.php';
+                    break;
 
-            case "reparation":    //page d'une réparation spécifique
-                include './controleurs/controleur_reparation.php';
-                break;
+                case "reparation":    //page d'une réparation spécifique
+                    include './controleurs/controleur_reparation.php';
+                    break;
 
-            default:
-                break;
+                default:
+                    break;
+            }
+        }
+        catch (PDOException $e){
+            echo "<h1>ERROR : ".$e->getMessage()."</h1>";
+        }
+        catch (Exception $e){
+            echo "<h1>ERROR : ".$e->getMessage()."</h1>";
         }
 
         echo "<hr>";
