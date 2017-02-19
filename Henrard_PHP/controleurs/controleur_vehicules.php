@@ -1,5 +1,13 @@
 <?php
-$post = filter_input_array(INPUT_POST);
+$args = array(
+    'id' => FILTER_VALIDATE_INT,
+    'numero_chassis' => FILTER_SANITIZE_STRING,
+    'plaque' => FILTER_SANITIZE_STRING,
+    'marque' => FILTER_SANITIZE_STRING,
+    'modele' => FILTER_SANITIZE_STRING,
+    'type' => FILTER_SANITIZE_STRING
+);
+$post = filter_input_array(INPUT_POST, $args);
 include_once './modeles/modele_db.php';
 
 try{
