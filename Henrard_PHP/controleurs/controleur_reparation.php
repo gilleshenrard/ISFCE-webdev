@@ -1,7 +1,7 @@
 <?php
 //include_once './controleurs/controleur_customfct.php';
 
-$id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_STRING);
+$id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 $args = array(
     'id' => FILTER_VALIDATE_INT,
     'intervention' => FILTER_SANITIZE_STRING,
@@ -16,13 +16,8 @@ $database = new Db();
 $database->connect();
 
 if(!is_null($post)){
-    $r=array(
-        'id' => $id,
-        'intervention' => $post['intervention'],
-        'description' => $post['description'],
-        'date' => $post['date'],
-        'vehicule_FK' => $post['vehicule_FK']
-    );
+    $r=$post;
+    $r['id'] = $id;
     $database->update_repa($r);
 }
 else {

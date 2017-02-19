@@ -15,7 +15,7 @@ $args = array(
     )
 );
 $post = filter_input_array(INPUT_POST, $args);
-$id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_STRING);
+$id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 
 include_once './modeles/modele_db.php';
 $database = new Db();
