@@ -19,7 +19,7 @@ $page = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_STRING);
             switch ($page) {
                 case null:  //Home
                 case "list_car":    //liste de voitures
-                    include './controleurs/controleur_vehicules.php';
+                    include './controleurs/controleur_liste.php';
                     break;
 
                 case "vehicle":    //page d'un véhicule spécifique

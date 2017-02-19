@@ -1,26 +1,33 @@
 <?php
-$id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_STRING);
-$post = filter_input_array(INPUT_POST);
-include_once './modeles/modele_db.php';
-include_once './controleurs/controleur_customfct.php';
+//include_once './controleurs/controleur_customfct.php';
 
+$args = array(
+    'id' => FILTER_VALIDATE_INT,
+    'numero_chassis' => FILTER_SANITIZE_STRING,
+    'plaque' => FILTER_SANITIZE_STRING,
+    'marque' => FILTER_SANITIZE_STRING,
+    'modele' => FILTER_SANITIZE_STRING,
+    'type' => array(
+        'filter' => FILTER_CALLBACK,
+        'options' => function($type){
+            return in_array($type, array('Voiture', 'Moto', 'Camion', 'Camionette')) ? $type : null;
+        }
+    )
+);
+$post = filter_input_array(INPUT_POST, $args);
+$id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_STRING);
+
+include_once './modeles/modele_db.php';
 $database = new Db();
 $database->connect();
 
-if (!is_null($post) and !isset($v)) {
-    $v=array(
-        'id' => $id,
-        'numero_chassis' => $post['numero_chassis'],
-        'plaque' => $post['plaque'],
-        'marque' => $post['marque'],
-        'modele' => $post['modele'],
-        'type' => $post['type']
-    );
-    $database->update_veh($v);
-    $_POST = array();
-}
-else {
-    if (!isset($v)) {
+if (!isset($v)) {
+    if(!is_null($post)){
+        $v = $post;
+        $v['id'] = $id;
+        $database->update_veh($v);
+    }
+    else {
         $v = $database->searchBy_ID("vehicules", $id);
     }
 }
