@@ -13,7 +13,7 @@ $page = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_STRING);
 
     <body>
         <?php include "./vues/menu_header_footer/menu.php";
-        include './vues/menu_header_footer/header.php';
+        include './controleurs/controleur_header.php';
 
         try{
             switch ($page) {
