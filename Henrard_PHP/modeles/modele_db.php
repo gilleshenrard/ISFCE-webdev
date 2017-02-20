@@ -69,7 +69,7 @@ class Db{
 
         // execution et retour des résultats
         $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_LAZY);
+        return $stmt->fetchall();
     }
     
     public function searchBy_FK($table, $fk){
