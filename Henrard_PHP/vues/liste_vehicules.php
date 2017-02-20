@@ -22,6 +22,7 @@
                     }
                 }
             ?>
+            <a href="?page=vehicle" class="list-group-item">Ajouter un véhicule</a>
         </div>
     </div>
 </div>
