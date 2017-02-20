@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row" style="margin-bottom: 30px;">
-        <form method="post" action="#" class="form-inline">
+        <form method="post" action="?page=vehicle&action=display" class="form-inline">
             <div class="form-group">
                 <input type="text" id="plaque" name="plaque" placeholder="Plaque à chercher" class="form-control" />
             </div>
@@ -19,6 +19,7 @@
                     }
                 }
             ?>
+            <a href="?page=vehicle&action=new" class="list-group-item">Ajouter un véhicule</a>
         </div>
     </div>
 </div>
