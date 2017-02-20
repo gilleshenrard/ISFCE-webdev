@@ -5,7 +5,7 @@ $args = array(
     'intervention' => FILTER_SANITIZE_STRING,
     'description' => FILTER_SANITIZE_STRING,
     'date' => FILTER_SANITIZE_STRING,
-    'vehicule_FK' => FILTER_VALIDATE_INT
+    'vehicule_FK' => FILTER_SANITIZE_NUMBER_INT
 );
 $post = filter_input_array(INPUT_POST, $args);
 
