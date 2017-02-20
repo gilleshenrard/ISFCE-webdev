@@ -1,20 +1,20 @@
 <?php
 //Etablissement des filtres pour assainir $_POST
 $args = array(
-    'numero_chassis' => FILTER_SANITIZE_STRING,
-    'plaque' => FILTER_SANITIZE_STRING,
+    'numero_chassis' => array(
+        'filter' => FILTER_CALLBACK,
+        'options' => function($input){ return preg_match('#^([0-9]{5}-){3}[0-9]{5}$#',$input) ? $input : null; }),
+    'plaque' => array(
+        'filter' => FILTER_CALLBACK,
+        'options' => function($input){ return preg_match('#^(1-)?[A-Z]{3}-[0-9]{3}$#',$input) ? $input : null; }),
     'marque' => FILTER_SANITIZE_STRING,
     'modele' => FILTER_SANITIZE_STRING,
     'type' => array(
         'filter' => FILTER_CALLBACK,
-        'options' => function($type){
-            return in_array($type, array('Voiture', 'Moto', 'Camion', 'Camionette')) ? $type : null;
-        }
-    )
+        'options' => function($input){ return in_array($input, array('Voiture','Moto','Camion','Camionette')) ? $input : null; })
 );
-//Récupération filtrée de $_POST
+//Récupération filtrée de $_POST et $_GET
 $post = filter_input_array(INPUT_POST, $args);
-//Récupération filtrée de $_GET
 $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 
 //Connexion à la DB
