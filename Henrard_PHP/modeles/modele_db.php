@@ -49,18 +49,23 @@ class Db{
         return $stmt->fetch(PDO::FETCH_LAZY);
     }
     
-    public function searchBy_plaque($table, $str){
-        if (!in_array($table, array("vehicules", "reparations", "utilisateurs"))) {
-            throw new Exception("Mauvaise valeur pour la table recherchée!");
-        }
+    public function search_vehicle($str){
         // query à exécuter
         $sql = "SELECT * ";
-        $sql.= "FROM ".$table;
-        $sql.= " WHERE :pl LIKE plaque";
+        $sql.= "FROM vehicules";
+        $sql.= " WHERE :pl LIKE plaque ";
+        $sql.= " OR :num LIKE numero_chassis ";
+        $sql.= " OR :ma LIKE marque ";
+        $sql.= " OR :mo LIKE modele ";
+        $sql.= " OR :ty LIKE type ";
 
         // preparation de la query (sécurisée)
         $stmt = Db::$connection->prepare($sql);
+        $stmt->bindParam(":num", $str);
         $stmt->bindParam(":pl", $str);
+        $stmt->bindParam(":ma", $str);
+        $stmt->bindParam(":mo", $str);
+        $stmt->bindParam(":ty", $str);
 
         // execution et retour des résultats
         $stmt->execute();
