@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Jumbotron Template for Bootstrap</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Project name</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <form class="navbar-form navbar-right">
+            <div class="form-group">
+              <input type="text" placeholder="Email" class="form-control">
+            </div>
+            <div class="form-group">
+              <input type="password" placeholder="Password" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-success">Sign in</button>
+          </form>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Cours 22</h1>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+            <form id="formulaire" method="post" action="#" class="well">
+                <div id="group1" class="form-group has-success">
+                    <label for="champ1" class="control-label">Etablissement d'enseignement</label>
+                    <input type="text" id="champ1" class="form-control" placeholder="Etablissement" />
+                    <span id="text1" class="help-block small" hidden="true">Entrez un numéro de plaque correct (1-ABC-123)</span>
+                </div>
+                
+                <button id="valider" class="btn btn-info">Valider</button>
+                
+                <button type="submit" class="btn btn-success">OK</button>
+            </form>
+        </div>
+      </div>
+    </div>
+      <hr>
+
+      <footer>
+        <p>&copy; 2016 Company, Inc.</p>
+      </footer>
+    </div> <!-- /container -->
+  </body>
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $("button").click(function(){
+            return false;
+        });
+        
+        $("#valider").click(function (){
+            var regex = /^(1-)?[A-Z]{3}-[0-9]{3}$/;
+            if(regex.test($("#champ1").val())){
+                console.log("success");
+                $("#group1").removeClass("has-error");
+                $("#group1").addClass("has-success");
+                $("#text1").hide();
+            }
+            else{
+                console.log("failure");
+                $("#group1").removeClass("has-success");
+                $("#group1").addClass("has-error");
+                $("#text1").show();
+            }
+        });
+    });
+  </script>
+</html>
