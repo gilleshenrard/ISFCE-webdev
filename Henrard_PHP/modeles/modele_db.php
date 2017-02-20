@@ -114,18 +114,4 @@ class Db{
         
         $stmt->execute();
     }
-    
-    public function add_veh($array){
-        $sql = "INSERT INTO reparations (numero_chassis,plaque,marque,modele,type) ";
-        $sql.= "VALUES (:numero_chassis,:plaque,:marque,:modele,:type)";
-        
-        $stmt = Db::$connection->prepare($sql);
-        $stmt->bindParam(":numero_chassis", $array['numero_chassis']);
-        $stmt->bindParam(":plaque", $array['plaque']);
-        $stmt->bindParam(":marque", $array['marque']);
-        $stmt->bindParam(":modele", $array['modele']);
-        $stmt->bindParam(":type", $array['type']);
-        
-        $stmt->execute();
-    }
 }
