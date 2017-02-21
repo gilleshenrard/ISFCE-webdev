@@ -37,7 +37,7 @@
             </div>
 
             <div class="form-group">
-                <button type="submit" class="btn btn-primary">Valider</button>
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
             </div>
         </form>
     </div>

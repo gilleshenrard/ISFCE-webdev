@@ -32,7 +32,7 @@
             <input type="text" name="vehicule_FK" value="<?php echo $post['vehicule_FK'];?>" hidden="true"/>
 
             <div class="form-group">
-                <button type="submit" class="btn btn-primary">Valider</button>
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
             </div>
         </form>
     </div>
