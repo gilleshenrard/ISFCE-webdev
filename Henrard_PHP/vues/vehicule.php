@@ -46,14 +46,14 @@
 
     <div class="container col-md-5">
         <h1>Réparations</h1>
-        <div class="list-group">
+        <ul class="list-group">
             <?php
                 foreach ($rep as $r) {
                     if (isset($r['intervention']) && isset($r['id'])) {
-                        echo '<a href="?page=reparation&id='.$r['id'].'" class="list-group-item">'.$r['intervention'].'</a>';
+                        include './vues/list_item_reparation.php';
                     }
                 }
             ?>
-        </div>
+        </ul>
     </div>
 </div>
