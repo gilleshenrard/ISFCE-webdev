@@ -21,6 +21,7 @@ $post = filter_input_array(INPUT_POST, array(
     'modele' => FILTER_SANITIZE_STRING,
     'id' => FILTER_SANITIZE_NUMBER_INT,
 ));
+//Vérification des valeurs de $post
 if (!is_null($post) and in_array(FALSE, $post)) {
     throw new Exception("Valeur incorrecte entrée dans le formulaire");
 }
@@ -30,18 +31,23 @@ include_once './modeles/modele_db.php';
 $database = new Db();
 $database->connect();
 
-//Vérification des valeurs de $post
+//Si un véhicule a été sélectionné dans la liste
 if($page == "vehicle"){
     $database->update_veh($post);
     $rep = $database->searchBy_FK("reparations", $post['id']);
     $action = "vehicle";
 }
+//Sinon, création d'un nouveau
 else{
     $rep = array();
     if (!is_null($post)) {
+        var_dump($post);
         // INSERT INTO table VALUES
+        $action = "list";
     }
-    $action = "new";
+    else {
+        $action = "new";
+    }
 }
 
 //Affichage des résultats
