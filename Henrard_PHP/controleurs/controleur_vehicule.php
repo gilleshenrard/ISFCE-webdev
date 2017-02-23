@@ -33,7 +33,9 @@ $database->connect();
 
 //Si un véhicule a été sélectionné dans la liste
 if($page == "vehicle"){
-    $database->update_veh($post);
+    if (!is_null($post)) {
+        $database->update_veh($post);
+    }
     $rep = $database->searchBy_FK("reparations", $post['id']);
     $action = "vehicle";
 }
@@ -41,9 +43,9 @@ if($page == "vehicle"){
 else{
     $rep = array();
     if (!is_null($post)) {
-        var_dump($post);
-        // INSERT INTO table VALUES
-        $action = "list";
+        $id = $database->add_vehicle($post);
+        $post['id'] = $id['id'];
+        $action = "vehicle";
     }
     else {
         $action = "new";

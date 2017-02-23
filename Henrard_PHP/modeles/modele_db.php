@@ -119,4 +119,24 @@ class Db{
         
         $stmt->execute();
     }
+    
+    public function add_vehicle($array){
+        $sql = "INSERT INTO vehicules (numero_chassis, plaque, marque, modele, type) ";
+        $sql.= "VALUES (:num_ch, :pl, :ma, :mo, :ty)";
+        
+        $stmt = Db::$connection->prepare($sql);
+        $stmt->bindParam(":num_ch", $array['numero_chassis']);
+        $stmt->bindParam(":pl", $array['plaque']);
+        $stmt->bindParam(":ma", $array['marque']);
+        $stmt->bindParam(":mo", $array['modele']);
+        $stmt->bindParam(":ty", $array['type']);
+        
+        $stmt->execute();
+        
+        $stmt2 = Db::$connection->prepare("SELECT id FROM vehicules WHERE plaque LIKE :pl");
+        $stmt2->bindParam(":pl", $array["plaque"]);
+        $stmt2->execute();
+        
+        return $stmt2->fetch(PDO::FETCH_LAZY);
+    }
 }
