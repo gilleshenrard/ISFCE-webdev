@@ -50,7 +50,7 @@
             <?php
                 foreach ($rep as $r) {
                     if (isset($r['intervention']) && isset($r['id'])) {
-                        include './controleurs/controleur_list_item_reparation.php';
+                        include './vues/list_item_reparation.php';
                     }
                 }
             ?>
