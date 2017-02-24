@@ -1,6 +1,6 @@
 <li class='list-group-item'>
     <form method='post' action='?page=reparation' class='form-inline'>
-        <label class='col form-label'><?php echo $r['description'];?></label>
+        <label class='col form-label'><?php echo $display;?></label>
         <input type="hidden" name='id' class='form-control' value="<?php echo $r['id'];?>">
         <input type="hidden" name='intervention' class='form-control' value="<?php echo $r['intervention'];?>">
         <input type="hidden" name='description' class='form-control' value="<?php echo $r['description'];?>">
