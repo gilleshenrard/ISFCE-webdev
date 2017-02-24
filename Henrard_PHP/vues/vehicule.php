@@ -50,10 +50,11 @@
             <?php
                 foreach ($rep as $r) {
                     if (isset($r['intervention']) && isset($r['id'])) {
-                        include './vues/list_item_reparation.php';
+                        include './controleurs/controleur_list_item_reparation.php';
                     }
                 }
             ?>
+            <a href="?page=new-reparation" class="list-group-item">Ajouter une réparation</a>
         </ul>
     </div>
 </div>

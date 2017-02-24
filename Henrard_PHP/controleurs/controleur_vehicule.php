@@ -32,12 +32,12 @@ $database = new Db();
 $database->connect();
 
 //Si un véhicule a été sélectionné dans la liste
-if($page == "vehicle"){
+if($page == "vehicule"){
     if (!is_null($post)) {
         $database->update_veh($post);
     }
     $rep = $database->searchBy_FK("reparations", $post['id']);
-    $action = "vehicle";
+    $action = "vehicule";
 }
 //Sinon, création d'un nouveau
 else{
@@ -45,10 +45,10 @@ else{
     if (!is_null($post)) {
         $id = $database->add_vehicle($post);
         $post['id'] = $id['id'];
-        $action = "vehicle";
+        $action = "vehicule";
     }
     else {
-        $action = "new";
+        $action = "new-vehicule";
     }
 }
 
