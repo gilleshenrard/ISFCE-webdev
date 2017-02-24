@@ -8,7 +8,6 @@ $args = array(
     'vehicule_FK' => FILTER_SANITIZE_NUMBER_INT
 );
 $post = filter_input_array(INPUT_POST, $args);
-var_dump($post);
 
 //Vérification des valeurs de $post
 if (!is_null($post) and in_array(FALSE, $post)) {
@@ -20,17 +19,10 @@ include_once './modeles/modele_db.php';
 $database = new Db();
 $database->connect();
 
-if ($page == "reparation") {
-    //Si données saisies dans le formulaire
-    if(!is_null($post)){
-        //Verification des données et update dans la DB
-        $database->update_repa($post);
-    }
-    $actionrep = "reparation";
+//Si données saisies dans le formulaire
+if(!is_null($post)){
+    //Verification des données et update dans la DB
+    $database->update_repa($post);
 }
- else {
-    $actionrep = "new-reparation";
-}
-
 //Affichage
 include './vues/reparation.php';

@@ -33,9 +33,10 @@ $database->connect();
 
 //Si un véhicule a été sélectionné dans la liste
 if($page == "vehicule"){
-    $database->update_veh($post);
+    if (!is_null($post)) {
+        $database->update_veh($post);
+    }
     $rep = $database->searchBy_FK("reparations", $post['id']);
-    $display = strlen($rep['description'])>47 ? substr($rep['description'], 0, 44)."..." : $rep['description'];
     $action = "vehicule";
 }
 //Sinon, création d'un nouveau
