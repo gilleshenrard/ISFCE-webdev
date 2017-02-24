@@ -139,4 +139,17 @@ class Db{
         
         return $stmt2->fetch(PDO::FETCH_LAZY);
     }
+        
+    public function add_reparation($array){
+        $sql = "INSERT INTO reparations (intervention, description, vehicule_FK, date) ";
+        $sql.= "VALUES (:int, :des, :fk, :date)";
+        
+        $stmt = Db::$connection->prepare($sql);
+        $stmt->bindParam(":int", $array['intervention']);
+        $stmt->bindParam(":des", $array['description']);
+        $stmt->bindParam(":fk", $array['vehicule_FK']);
+        $stmt->bindParam(":date", $array['date']);
+        
+        $stmt->execute();
+    }
 }
