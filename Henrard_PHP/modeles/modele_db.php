@@ -132,12 +132,7 @@ class Db{
         $stmt->bindParam(":ty", $array['type']);
         
         $stmt->execute();
-        
-        $stmt2 = Db::$connection->prepare("SELECT id FROM vehicules WHERE plaque LIKE :pl");
-        $stmt2->bindParam(":pl", $array["plaque"]);
-        $stmt2->execute();
-        
-        return $stmt2->fetch(PDO::FETCH_LAZY);
+        return Db::$connection->lastInsertId();
     }
         
     public function add_reparation($array){
