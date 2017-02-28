@@ -9,6 +9,6 @@
         <input type="hidden" name='marque' class='form-control' value="<?php echo $v['marque'];?>">
         <input type="hidden" name='modele' class='form-control' value="<?php echo $v['modele'];?>">
         <input type="hidden" name='type' class='form-control' value="<?php echo $v['type'];?>">
-        <button type='submit' class='col btn btn-info'>Modifier</button>
+        <button type='submit' class='col btn btn-info'>Visionner</button>
     </form>
 </li>

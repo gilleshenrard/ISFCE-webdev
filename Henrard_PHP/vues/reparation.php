@@ -1,17 +1,18 @@
 <div class="container">
     <div class="row">
-        <form method="get" action="?page=vehicle&id=<?php echo $post['vehicule_FK'];?>">
+        <form method="post" action="?page=vehicule&act=search">
             <div class="form-group">
+                <input type="hidden" name="id" value="<?php echo $post['vehicule_FK'];?>" />
                 <button type="submit" class="btn btn-primary">Retour à la voiture</button>
             </div>
         </form>
     </div>
 
     <div class="col-md-5 row">
-        <form method="post" action="?page=<?php echo $actionrep;?>">
+        <form method="post" action="?page=reparation&act=<?php echo $act;?>">
             <div class="form-group" hidden="true">
                 <label for="id">ID</label>
-                <input type="text" id="id" name="id" value="<?php echo is_null($post['id']) ? "-1" : $post['id'];?>" class="form-control" />
+                <input type="text" id="id" name="id" value="<?php echo $post['id'];?>" class="form-control" />
             </div>
 
             <div class="form-group">

@@ -119,7 +119,7 @@ class Db{
         
         $stmt->execute();
     }
-    
+
     public function add_vehicle($array){
         $sql = "INSERT INTO vehicules (numero_chassis, plaque, marque, modele, type) ";
         $sql.= "VALUES (:num_ch, :pl, :ma, :mo, :ty)";
@@ -144,6 +144,17 @@ class Db{
         $stmt->bindParam(":des", $array['description']);
         $stmt->bindParam(":fk", $array['vehicule_FK']);
         $stmt->bindParam(":date", $array['date']);
+        
+        $stmt->execute();
+        return Db::$connection->lastInsertId();
+    }
+    
+    public function delete($id, $table){
+        $sql  = "DELETE FROM ".$table;
+        $sql .= " WHERE id = :id";
+        
+        $stmt = Db::$connection->prepare($sql);
+        $stmt->bindParam(":id", $id);
         
         $stmt->execute();
     }

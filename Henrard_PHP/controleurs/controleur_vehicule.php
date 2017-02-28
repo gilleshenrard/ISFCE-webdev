@@ -1,7 +1,6 @@
 <?php
-
-//Assainissement de $_POST à l'aide de filtres
-$post = filter_input_array(INPUT_POST, array(
+//Définition des filtres à appliquer sur $_POST
+$opt = array(
     'numero_chassis' => array(
         'filter' => FILTER_CALLBACK,
         'options' => function($input){
@@ -19,92 +18,64 @@ $post = filter_input_array(INPUT_POST, array(
         ),
     'marque' => FILTER_SANITIZE_STRING,
     'modele' => FILTER_SANITIZE_STRING,
-    'id' => FILTER_SANITIZE_NUMBER_INT,
-));
-var_dump($post);
-        
-$act = filter_input(INPUT_GET, "act", FILTER_SANITIZE_STRING);
+    'id' => FILTER_SANITIZE_NUMBER_INT
+);
 
-//Connexion à la DB
-include_once './modeles/modele_db.php';
-$database = new Db();
-$database->connect();
+//Récupération et assainissement de $_POST et $_GET
+$post = filter_input_array(INPUT_POST, $opt);
+$act = filter_input(INPUT_GET, "act", FILTER_SANITIZE_STRING);
+$nullerror = "La page ne doit être atteinte que via les inputs fournis";
 
 switch ($act){
-    case "edit":
-        echo "<h1>EDIT</h1>";
-        break;
-    
-    case "new":
-        $rep = array();
-        if(!is_null($post)){
-            $eval = $post;
-            unset($eval['id']);
-            if(!in_array(FALSE, $eval)){
-                echo "<h1>AJOUT</h1>";
-                $id = $database->add_vehicle($post);
-                $post['id']=$id;
-                $act="edit";
+    case "search":
+            if(isset($post['id'])){
+                $post=$database->searchBy_ID("vehicules", $post['id']);
+                $act='edit';
+            }
+            $rep = $database->searchBy_FK("reparations", $post['id']);
+            break;
+
+    case "edit":    //Edition de vehicule
+            //Si formulaire non-vide recu, update dans la DB
+            if (!is_null($post) && !in_array(FALSE, $post)) {
+                $database->update_veh($post);
             }
             else {
-                throw new Exception("Valeur invalide entrée dans le formulaire");
+                throw new Exception($nullerror);
             }
-        }
-        break;
+            $rep = $database->searchBy_FK("reparations", $post['id']);
+            break;
+    
+    case "new":     //Nouveau vehicule
+            $rep = array();
+            if(!is_null($post)){
+                //Variable temporaire pour simplifier le test des filtres
+                $eval = $post;
+                unset($eval['id']);
+                if(!in_array(FALSE, $eval)){
+                    //Ajout dans la DB + recuperation de l'ID cree
+                    $id = $database->add_vehicle($post);
+                    $post['id']=$id;
+                    //Redirection de la prochaine page vers la page d'edition
+                    $act="edit";
+                }
+                else {
+                    throw new Exception("Valeur invalide entrée dans le formulaire");
+                }
+            }
+            break;
     
     case "del":
-        echo "<h1>DELETE</h1>";
+        if (!is_null($post)) {
+            $database->delete($post[id], 'vehicules');
+            header('Location: ?page=list');
+        }
         break;
-    
-    case FALSE:
-    case null:
-        throw new Exception("La page ne doit être atteinte que via les inputs fournis");
+
+    default:
+        throw new Exception($nullerror);
         break;
-}
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-/*        
-//Vérification des valeurs de $post
-if (!is_null($post) and in_array(FALSE, $post)) {
-    throw new Exception("Valeur incorrecte entrée dans le formulaire");
 }
 
-//Connexion à la DB
-include_once './modeles/modele_db.php';
-$database = new Db();
-$database->connect();
-
-//Si un véhicule a été sélectionné dans la liste
-if($page == "vehicule"){
-    if (!is_null($post)) {
-        $database->update_veh($post);
-    }
-    $rep = $database->searchBy_FK("reparations", $post['id']);
-    $action = "vehicule";
-}
-//Sinon, création d'un nouveau
-else{
-    $rep = array();
-    if (!is_null($post)) {
-        $id = $database->add_vehicle($post);
-        $post['id'] = $id['id'];
-        $action = "vehicule";
-    }
-    else {
-        $action = "new-vehicule";
-    }
-}
-*/
 //Affichage des résultats
 include './vues/vehicule.php';

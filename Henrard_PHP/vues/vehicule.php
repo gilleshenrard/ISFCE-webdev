@@ -52,7 +52,18 @@
                     }
                 }
             ?>
-            <a href="?page=new-reparation" class="list-group-item">Ajouter une réparation</a>
+            <!--a href="?page=reparation&act=new" class="list-group-item">Ajouter une réparation</a-->
+            <div class="list-group-item">
+                <form method="post" action="?page=reparation&act=new" class="form-inline">
+                    <input type="hidden" name="vehicule_FK" value="<?php echo $post['id'];?>" />
+                    <button type="submit" class="btn btn-primary">Ajouter une réparation</button>
+                </form>
+            </div>
         </ul>
     </div>
+
+    <form method="post" action="?page=vehicule&act=del" class="form-group">
+        <input type="hidden" name="id" value="<?php echo $post['id'];?>"/>
+        <button type="submit" class="btn btn-danger">Supprimer</button>
+    </form>
 </div>

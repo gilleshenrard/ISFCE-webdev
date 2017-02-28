@@ -8,30 +8,40 @@ $args = array(
     'vehicule_FK' => FILTER_SANITIZE_NUMBER_INT
 );
 $post = filter_input_array(INPUT_POST, $args);
+$act = filter_input(INPUT_GET, "act", FILTER_SANITIZE_STRING);
+$nullerror = "La page ne doit être atteinte que via les inputs fournis";
 
-//Vérification des valeurs de $post
-if (!is_null($post) and in_array(FALSE, $post)) {
-    throw new Exception("Valeur incorrecte entrée dans le formulaire");
+if (is_null($post)) {
+    throw new Exception($nullerror);
 }
 
-//Connexion à la DB
-include_once './modeles/modele_db.php';
-$database = new Db();
-$database->connect();
-
-if ($page == "reparation") {
-    //Si données saisies dans le formulaire
-    if(!is_null($post)){
-        //Verification des données et update dans la DB
-        $database->update_repa($post);
-    }
-    $actionrep = "reparation";
-}
- else {
-    if (!is_null($post)) {
-        $database->add_reparation($post);
-    }
-    $actionrep = "new-reparation";
+switch ($act) {
+    case "new":
+        $eval = $post;
+        unset($eval['id']);
+        if (!in_array(FALSE, $eval)) {
+            $id = $database->add_reparation($post);
+            $post['id']=$id;
+            $act="edit";
+        }
+        break;
+    
+    case "edit":
+        if(!in_array(FALSE, $post)){
+            //Verification des données et update dans la DB
+            $database->update_repa($post);
+        }
+        else {
+            throw new Exception("Valeur invalide dans un champ");
+        }
+        break;
+    
+    case "del":
+        echo "<h1>DELETE</h1>";
+        break;
+    
+    default:
+        break;
 }
 
 //Affichage
