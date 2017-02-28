@@ -1,10 +1,8 @@
 <div class="container">
     <div class="container col-md-5">
-        <form method="post" action="?page=<?php echo $action?>">
-            <div class="form-group" hidden="true">
-                <label for="id">ID</label>
-                <input type="text" id="id" name="id" value="<?php echo is_null($post['id']) ? "-1" : $post['id'];?>" class="form-control" />
-            </div>
+        <form method="post" action="?page=vehicule&act=<?php echo $act;?>">
+
+            <input type="hidden" id="id" name="id" value="<?php echo $post['id'];?>" class="form-control" />
 
             <div class="form-group">
                 <label for="numero_chassis">Numéro de chassis</label>

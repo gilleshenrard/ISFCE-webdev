@@ -3,7 +3,6 @@
         <form method="post" action="?page=list" class="form-inline">
             <div class="form-group">
                 <input type="text" id="search" name="search" placeholder="Rechercher par mot-clef" class="form-control" />
-                <!--small class="form-text text-muted">Entrez un mot-clef (plaque, marque, modèle, ...)</small-->
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">Chercher</button>
@@ -23,7 +22,7 @@
                     }
                 }
             ?>
-            <a href="?page=new-vehicule" class="list-group-item">Ajouter un véhicule</a>
+            <a href="?page=vehicule&act=new" class="list-group-item">Ajouter un véhicule</a>
         </ul>
     </div>
 </div>

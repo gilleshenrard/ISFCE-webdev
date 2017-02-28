@@ -1,5 +1,5 @@
 <li class='list-group-item'>
-    <form method='post' action='?page=vehicule' class='form-inline'>
+    <form method='post' action='?page=vehicule&act=edit' class='form-inline'>
         <label name='plaque' class='col-md-4 form-label'><?php echo $v['plaque'];?></label>
         <label name='marque' class='col-md-3 form-label'><?php echo $v['marque'];?></label>
         <label name='modele' class='col-md-3 form-label'><?php echo $v['modele'];?></label>

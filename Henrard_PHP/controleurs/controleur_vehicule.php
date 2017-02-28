@@ -21,6 +21,60 @@ $post = filter_input_array(INPUT_POST, array(
     'modele' => FILTER_SANITIZE_STRING,
     'id' => FILTER_SANITIZE_NUMBER_INT,
 ));
+var_dump($post);
+        
+$act = filter_input(INPUT_GET, "act", FILTER_SANITIZE_STRING);
+
+//Connexion à la DB
+include_once './modeles/modele_db.php';
+$database = new Db();
+$database->connect();
+
+switch ($act){
+    case "edit":
+        echo "<h1>EDIT</h1>";
+        break;
+    
+    case "new":
+        $rep = array();
+        if(!is_null($post)){
+            $eval = $post;
+            unset($eval['id']);
+            if(!in_array(FALSE, $eval)){
+                echo "<h1>AJOUT</h1>";
+                $id = $database->add_vehicle($post);
+                $post['id']=$id;
+                $act="edit";
+            }
+            else {
+                throw new Exception("Valeur invalide entrée dans le formulaire");
+            }
+        }
+        break;
+    
+    case "del":
+        echo "<h1>DELETE</h1>";
+        break;
+    
+    case FALSE:
+    case null:
+        throw new Exception("La page ne doit être atteinte que via les inputs fournis");
+        break;
+}
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+/*        
 //Vérification des valeurs de $post
 if (!is_null($post) and in_array(FALSE, $post)) {
     throw new Exception("Valeur incorrecte entrée dans le formulaire");
@@ -51,6 +105,6 @@ else{
         $action = "new-vehicule";
     }
 }
-
+*/
 //Affichage des résultats
 include './vues/vehicule.php';

@@ -23,12 +23,10 @@ $page = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_STRING);
                     break;
 
                 case "vehicule":    //page d'un véhicule spécifique
-                case "new-vehicule":
                     include './controleurs/controleur_vehicule.php';
                     break;
 
                 case "reparation":    //page d'une réparation spécifique
-                case "new-reparation":
                     include './controleurs/controleur_reparation.php';
                     break;
 
