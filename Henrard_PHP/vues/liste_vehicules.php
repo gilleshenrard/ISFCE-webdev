@@ -15,7 +15,7 @@
             <?php
                 foreach ($vehicles as $v) {
                     if (isset($v['plaque']) && isset($v['id'])) {
-                        include './vues/list_item_vehicule.php';
+                        include './vues/list_items/list_item_vehicule.php';
                     }
                     else{
                         echo '<li class="list-group-item"><strong>'.$v.'</strong></li>';
