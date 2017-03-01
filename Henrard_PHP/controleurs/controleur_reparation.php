@@ -14,6 +14,14 @@ $nullerror = "La page ne doit être atteinte que via les inputs fournis";
 if (is_null($post)) {
     throw new Exception($nullerror);
 }
+ else {
+    if (isset($post['del'])) {
+        $act="del";
+    }
+     else {
+        unset($post['del']);
+    }
+}
 
 switch ($act) {
     case "new":
@@ -37,7 +45,13 @@ switch ($act) {
         break;
     
     case "del":
-        echo "<h1>DELETE</h1>";
+        if (!is_null($post)) {
+            $database->delete($post[id], 'reparations');
+            header('Location: ?page=list');
+        }
+        else {
+            throw new Exception($nullerror);
+        }
         break;
     
     default:
