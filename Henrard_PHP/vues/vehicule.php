@@ -39,7 +39,7 @@
             </div>
 
             <div class="form-group">
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" class="btn btn-primary" id="validate_vehicule">
                     <span class="glyphicon glyphicon-ok"> Valider</span>
                 </button>
             </div>

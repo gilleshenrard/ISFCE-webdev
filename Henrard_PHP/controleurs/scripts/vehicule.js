@@ -3,10 +3,12 @@ function checkValues(regex, id, group, tip){
         $(group).removeClass("has-error");
         $(group).addClass("has-success");
         $(tip).hide();
+        $("#validate_vehicule").prop("disabled",false);
     } else {
         $(group).removeClass("has-success");
         $(group).addClass("has-error");
         $(tip).show();
+        $("#validate_vehicule").prop("disabled",true);
     }
 }
 
