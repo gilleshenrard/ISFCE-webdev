@@ -2,7 +2,7 @@
     <div class="container col-md-5">
         <form method="post" action="?page=vehicule&act=<?php echo $act;?>">
 
-            <input type="hidden" id="id" name="id" value="<?php echo $post['id'];?>" class="form-control" />
+            <input type="hidden" id="id_vehicule" name="id" value="<?php echo $post['id'];?>" class="form-control" />
 
             <div class="form-group">
                 <label for="numero_chassis">Numéro de chassis</label>
@@ -35,7 +35,9 @@
             </div>
 
             <div class="form-group">
-                <button type="submit" class="btn btn-primary">Valider</button>
+                <button type="submit" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-ok"> Valider</span>
+                </button>
             </div>
         </form>
     </div>

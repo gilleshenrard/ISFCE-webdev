@@ -14,7 +14,7 @@
         <form method="post" action="?page=reparation&act=<?php echo $act;?>">
             <div class="form-group" hidden="true">
                 <label for="id">ID</label>
-                <input type="text" id="id" name="id" value="<?php echo $post['id'];?>" class="form-control" />
+                <input type="text" id="id_reparation" name="id" value="<?php echo $post['id'];?>" class="form-control" />
             </div>
 
             <div class="form-group">
@@ -32,10 +32,12 @@
                 <input type="date" id="date" name="date" value="<?php echo $post['date'];?>" class="form-control" />
             </div>
             
-            <input type="text" name="vehicule_FK" value="<?php echo is_null($post['vehicule_FK']) ? "-1" : $post['vehicule_FK'];?>" hidden="true"/>
+            <input type="hidden" name="vehicule_FK" value="<?php echo is_null($post['vehicule_FK']) ? "-1" : $post['vehicule_FK'];?>" />
 
             <div class="form-group">
-                <button type="submit" class="btn btn-primary">Valider</button>
+                <button type="submit" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-ok"> Valider</span>
+                </button>
             </div>
         </form>
     </div>
