@@ -35,7 +35,7 @@
             </div>
 
             <div class="form-group">
-                <button type="submit" class="btn btn-primary">Enregistrer</button>
+                <button type="submit" class="btn btn-primary">Valider</button>
             </div>
         </form>
     </div>
@@ -52,18 +52,14 @@
                     }
                 }
             ?>
-            <!--a href="?page=reparation&act=new" class="list-group-item">Ajouter une réparation</a-->
             <div class="list-group-item">
                 <form method="post" action="?page=reparation&act=new" class="form-inline">
                     <input type="hidden" name="vehicule_FK" value="<?php echo $post['id'];?>" />
-                    <button type="submit" class="btn btn-primary">Ajouter une réparation</button>
+                    <button type="submit" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
                 </form>
             </div>
         </ul>
     </div>
-
-    <form method="post" action="?page=vehicule&act=del" class="form-group">
-        <input type="hidden" name="id" value="<?php echo $post['id'];?>"/>
-        <button type="submit" class="btn btn-danger">Supprimer</button>
-    </form>
 </div>

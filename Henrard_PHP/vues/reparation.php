@@ -3,7 +3,9 @@
         <form method="post" action="?page=vehicule&act=search">
             <div class="form-group">
                 <input type="hidden" name="id" value="<?php echo $post['vehicule_FK'];?>" />
-                <button type="submit" class="btn btn-primary">Retour à la voiture</button>
+                <button type="submit" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-arrow-left"> Véhicule</span>
+                </button>
             </div>
         </form>
     </div>
@@ -33,7 +35,7 @@
             <input type="text" name="vehicule_FK" value="<?php echo is_null($post['vehicule_FK']) ? "-1" : $post['vehicule_FK'];?>" hidden="true"/>
 
             <div class="form-group">
-                <button type="submit" class="btn btn-primary">Enregistrer</button>
+                <button type="submit" class="btn btn-primary">Valider</button>
             </div>
         </form>
     </div>
