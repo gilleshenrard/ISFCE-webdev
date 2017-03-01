@@ -52,18 +52,4 @@ $database->connect();
 
         include './vues/menu_header_footer/footer.php';?>
     </body>
-
-    <?php
-        switch ($page) {
-            case "vehicule":    //page d'un véhicule spécifique
-                echo "<script src='controleurs/scripts/vehicule.js' type='text/javascript'></script>";
-                break;
-
-            case "reparation":    //page d'une réparation spécifique
-                echo "<script src='controleurs/scripts/reparation.js' type='text/javascript'></script>";
-                break;
-
-            default:
-                break;
-        }?>
 </html>
