@@ -1,3 +1,3 @@
 <?php
-$display = strlen($r['description'])>47 ? substr($r['description'], 0, 44)."..." : $r['description'];
+$display = strlen($r['intervention'])>47 ? substr($r['intervention'], 0, 44)."..." : $r['intervention'];
 include './vues/list_item_reparation.php';
