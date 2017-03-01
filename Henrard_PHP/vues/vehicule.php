@@ -65,3 +65,5 @@
         </ul>
     </div>
 </div>
+
+<link href="./controleurs/scripts/vehicule.js" type="text/javascript" />
