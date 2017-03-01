@@ -1,5 +1,5 @@
 <li class='list-group-item'>
-    <div class="container-fluid">
+    <div class="container-fluid list_item_vehicule">
         <form method='post' action='?page=vehicule&act=edit' class='form-inline col-md-10'>
             <label name='plaque' class='col-md-4 form-label'><?php echo $v['plaque'];?></label>
             <label name='marque' class='col-md-3 form-label'><?php echo $v['marque'];?></label>
@@ -14,6 +14,8 @@
                 <button type='submit' class='btn btn-info'>
                     <span class="glyphicon glyphicon-eye-open"></span>
                 </button>
+                
+                <!--Bouton de suppression : input simple au lieu d'un submit-->
                 <button type="text" class="btn btn-danger" name="del" value="true">
                     <span class="glyphicon glyphicon-trash"></span>
                 </button>
