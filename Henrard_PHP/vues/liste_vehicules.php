@@ -2,10 +2,12 @@
     <div class="row col-md-10" style="margin-bottom: 30px;">
         <form method="post" action="?page=list" class="form-inline">
             <div class="form-group">
-                <input type="text" id="search" name="search" placeholder="Rechercher par mot-clef" class="form-control" />
+                <input type="text" id="searchfield" name="search" placeholder="Rechercher par mot-clef" class="form-control" />
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-primary">Chercher</button>
+                <button type="submit" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-search"></span>
+                </button>
             </div>
         </form>
     </div>
