@@ -1,5 +1,5 @@
 <?php
-//Récupération et assainissement de $_POST
+//Récupération et assainissement de $_POST et $_GET
 $args = array(
     'id' => FILTER_SANITIZE_NUMBER_INT,
     'intervention' => FILTER_SANITIZE_STRING,
@@ -11,20 +11,24 @@ $post = filter_input_array(INPUT_POST, $args);
 $act = filter_input(INPUT_GET, "act", FILTER_SANITIZE_STRING);
 $nullerror = "La page ne doit être atteinte que via les inputs fournis";
 
+//Contrôle que la page est bien accédée via une autre page (-> $_POST non-nul)
 if (is_null($post)) {
     throw new Exception($nullerror);
 }
  else {
+    //Si suppression demandée, force la valeur du switch
     if (isset($post['del'])) {
         $act="del";
     }
      else {
+        //Sinon, retrait de 'del' pour ne pas parasiter le filtre
         unset($post['del']);
     }
 }
 
 switch ($act) {
-    case "new":
+    case "new":     // Nouvelle réparation
+        // Variable temporaire pour simplifier la vérification des filtres
         $eval = $post;
         unset($eval['id']);
         if (!in_array(FALSE, $eval)) {
@@ -34,7 +38,7 @@ switch ($act) {
         }
         break;
     
-    case "edit":
+    case "edit":     // Edition d'une réparation
         if(!in_array(FALSE, $post)){
             //Verification des données et update dans la DB
             $database->update_repa($post);
@@ -44,7 +48,7 @@ switch ($act) {
         }
         break;
     
-    case "del":
+    case "del":          // Suppression réparation
         if (!is_null($post)) {
             $database->delete($post[id], 'reparations');
             header('Location: ?page=list');

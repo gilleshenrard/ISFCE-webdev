@@ -27,6 +27,7 @@ $post = filter_input_array(INPUT_POST, $opt);
 $act = filter_input(INPUT_GET, "act", FILTER_SANITIZE_STRING);
 $nullerror = "La page ne doit être atteinte que via les inputs fournis";
 
+//Si suppression demandée, force la valeur du switch
 if (!is_null($post) && isset($post['del'])) {
     $act="del";
 }
@@ -35,7 +36,7 @@ if (!is_null($post) && isset($post['del'])) {
 }
 
 switch ($act){
-    case "search":
+    case "search":  //Recherche d'un véhicule
             if(isset($post['id'])){
                 $post=$database->searchBy_ID("vehicules", $post['id']);
                 $act='edit';
@@ -76,10 +77,12 @@ switch ($act){
             }
             break;
     
-    case "del":
+    case "del": //Suppression d'un véhicule
         if (!is_null($post)) {
+            //Suppression des réparations liées, puis suppression du véhicule
             $database->deleteAllBy_FK($post['id']);
             $database->delete($post['id'], 'vehicules');
+            //Redirection par requête http vers la page de liste
             header('Location: ?page=list');
         }
         else {

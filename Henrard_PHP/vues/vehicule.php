@@ -1,4 +1,5 @@
 <div class="container">
+    <!--Formulaire d'affichage/édition de véhicule-->
     <div class="container col-md-5">
         <form method="post" action="?page=vehicule&act=<?php echo $act;?>">
 
@@ -46,10 +47,14 @@
         </form>
     </div>
 
+    <!--Espaçage des deux tableaux-->
     <div class="container col-md-2"></div>
 
+    <!---listage des réparations liées au véhicule-->
     <div class="container col-md-5">
         <h1>Réparations</h1>
+
+        <!--Affichage en boucle de toutes les réparations-->
         <ul class="list-group">
             <?php
                 foreach ($rep as $r) {
@@ -58,6 +63,7 @@
                     }
                 }
             ?>
+            <!--Bouton d'ajout de nouvelle réparation liée au véhicule-->
             <div class="list-group-item">
                 <form method="post" action="?page=reparation&act=new" class="form-inline">
                     <input type="hidden" name="vehicule_FK" value="<?php echo $post['id'];?>" />
@@ -70,4 +76,5 @@
     </div>
 </div>
 
+<!--Script jQuery spécialisé pour la validation front-end des véhicules-->
 <script src='controleurs/scripts/vehicule.js' type='text/javascript'></script>

@@ -1,4 +1,5 @@
 <div class="container">
+    <!--Bouton de retour au véhicule auquel la réparation est liée-->
     <div class="row">
         <form method="post" action="?page=vehicule&act=search">
             <div class="form-group">
@@ -10,6 +11,7 @@
         </form>
     </div>
 
+    <!--Formulaire d'affichage/édition de réparation-->
     <div class="col-md-5 row">
         <form method="post" action="?page=reparation&act=<?php echo $act;?>">
             <div class="form-group" hidden="true">
@@ -43,4 +45,5 @@
     </div>
 </div>
 
+<!--Script jQuery spécialisé pour la validation front-end des réparations-->
 <link type="text/javascript" href="./controleurs/scripts/reparation.js" />
