@@ -3,13 +3,10 @@
         
         <!--Bouton home (efface les headers GET)-->
         <div class="navbar-header">
-            <a class="navbar-brand" href="./">Gilles Henrard</a>
+            <a class="navbar-brand" href="./">
+                <span class="glyphicon glyphicon-home"> HENRARD</span>
+            </a>
         </div>
-        
-        <!--Barre de navigation (liens, ajoutent un header GET 'page')-->
-        <!--ul class="nav navbar-nav">
-            <li><a href="?page=list_car">Véhicules</a></li>
-        </ul-->
         
         <!--Encart de connexion-->
         <div id="navbar" class="navbar-collapse collapse">
