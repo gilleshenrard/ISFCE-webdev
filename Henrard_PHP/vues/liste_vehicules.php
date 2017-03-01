@@ -22,7 +22,15 @@
                     }
                 }
             ?>
-            <a href="?page=vehicule&act=new" class="list-group-item">Ajouter un véhicule</a>
+            <li class="list-group-item">
+                <form method="get" action="" class="form-inline">
+                    <input type="hidden" name="page" value="vehicule" />
+                    <input type="hidden" name="act" value="new" />
+                    <button type="submit" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                </form>
+            </li>
         </ul>
     </div>
 </div>
