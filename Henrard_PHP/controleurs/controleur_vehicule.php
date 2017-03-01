@@ -18,7 +18,8 @@ $opt = array(
         ),
     'marque' => FILTER_SANITIZE_STRING,
     'modele' => FILTER_SANITIZE_STRING,
-    'id' => FILTER_SANITIZE_NUMBER_INT
+    'id' => FILTER_SANITIZE_NUMBER_INT,
+    'del' => FILTER_SANITIZE_STRING
 );
 
 //Récupération et assainissement de $_POST et $_GET
@@ -26,13 +27,23 @@ $post = filter_input_array(INPUT_POST, $opt);
 $act = filter_input(INPUT_GET, "act", FILTER_SANITIZE_STRING);
 $nullerror = "La page ne doit être atteinte que via les inputs fournis";
 
+if (!is_null($post) && isset($post['del'])) {
+    $act="del";
+}
+ else {
+    unset($post['del']);
+}
+
 switch ($act){
     case "search":
             if(isset($post['id'])){
                 $post=$database->searchBy_ID("vehicules", $post['id']);
                 $act='edit';
+                $rep = $database->searchBy_FK("reparations", $post['id']);
             }
-            $rep = $database->searchBy_FK("reparations", $post['id']);
+            else {
+                throw new Exception('Aucun véhicule spécifié');
+            }
             break;
 
     case "edit":    //Edition de vehicule
@@ -69,6 +80,9 @@ switch ($act){
         if (!is_null($post)) {
             $database->delete($post[id], 'vehicules');
             header('Location: ?page=list');
+        }
+        else {
+            throw new Exception($nullerror);
         }
         break;
 
