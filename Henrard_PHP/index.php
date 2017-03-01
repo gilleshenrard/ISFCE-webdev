@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 $page = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_STRING);
 
 //Connexion à la DB
@@ -19,10 +21,11 @@ $database->connect();
     </head>
 
     <body>
-        <?php include "./vues/menu_header_footer/menu.php";
-        include './controleurs/controleur_header.php';
-
+        <?php
         try{
+            include "./controleurs/controleur_menu.php";
+            include './vues/menu_header_footer/header.php';
+
             switch ($page) {
                 case null:  //Home
                 case "list":    //liste de voitures
@@ -38,14 +41,15 @@ $database->connect();
                     break;
 
                 default:
+                    throw new Exception('Page inconnue');
                     break;
             }
         }
         catch (PDOException $e){
-            echo "<h1>ERROR : ".$e->getMessage()."</h1>";
+            include './vues/erreur.php';
         }
         catch (Exception $e){
-            echo "<h1>ERROR : ".$e->getMessage()."</h1>";
+            include './vues/erreur.php';
         }
 
         echo "<hr>";

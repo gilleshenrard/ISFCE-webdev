@@ -72,6 +72,21 @@ class Db{
         return $stmt->fetchall();
     }
     
+    public function search_user($str){
+        // query à exécuter
+        $sql = "SELECT * ";
+        $sql.= "FROM utilisateurs";
+        $sql.= " WHERE :login LIKE login";
+
+        // preparation de la query (sécurisée)
+        $stmt = Db::$connection->prepare($sql);
+        $stmt->bindParam(":login", $str);
+
+        // execution et retour des résultats
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_LAZY);
+    }
+    
     public function searchBy_FK($table, $fk){
         if (!in_array($table, array("vehicules", "reparations", "utilisateurs"))) {
             throw new Exception("Mauvaise valeur pour la table recherchée!");
