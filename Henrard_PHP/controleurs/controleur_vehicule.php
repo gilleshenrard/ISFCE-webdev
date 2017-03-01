@@ -78,7 +78,8 @@ switch ($act){
     
     case "del":
         if (!is_null($post)) {
-            $database->delete($post[id], 'vehicules');
+            $database->deleteAllBy_FK($post['id']);
+            $database->delete($post['id'], 'vehicules');
             header('Location: ?page=list');
         }
         else {

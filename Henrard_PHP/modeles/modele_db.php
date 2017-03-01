@@ -90,6 +90,15 @@ class Db{
         return $stmt->fetchall();
     }
     
+    public function deleteAllBy_FK($fk){
+        $sql  = "DELETE FROM reparations";
+        $sql .= " WHERE vehicule_FK = :fk";
+        
+        $stmt = Db::$connection->prepare($sql);
+        $stmt->bindParam(":fk", $fk);
+        $stmt->execute();
+    }
+
     public function update_veh($array){
         $sql = "UPDATE vehicules ";
         $sql.= "SET numero_chassis = :num_ch, plaque = :pl, marque = :ma, modele = :mo, type = :ty ";
