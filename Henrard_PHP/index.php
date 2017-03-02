@@ -21,6 +21,9 @@ $database->connect();
     </head>
 
     <body>
+        <!--Pas trouvé d'autre moyen pour cacher les <span>, "hidden" ne fonctionne pas-->
+        <script type="text/javascript" src="controleurs/scripts/hide_span.js"></script>
+
         <?php
         try{
             include "./controleurs/controleur_connexion.php";

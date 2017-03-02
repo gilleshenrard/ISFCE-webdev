@@ -20,9 +20,6 @@ function checkValues(regex, id, group, tip){
 }
 
 $(document).ready(function() {
-    //Cache tous les tips au chargement de la fenêtre
-    $(".tips").hide();
-
     /**
      * Valide la valeur du numéro de chassis
      */
