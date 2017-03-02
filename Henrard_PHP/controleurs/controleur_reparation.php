@@ -5,7 +5,8 @@ $args = array(
     'intervention' => FILTER_SANITIZE_STRING,
     'description' => FILTER_SANITIZE_STRING,
     'date' => FILTER_SANITIZE_STRING,
-    'vehicule_FK' => FILTER_SANITIZE_NUMBER_INT
+    'vehicule_FK' => FILTER_SANITIZE_NUMBER_INT,
+    'del' => FILTER_SANITIZE_STRING
 );
 $post = filter_input_array(INPUT_POST, $args);
 $act = filter_input(INPUT_GET, "act", FILTER_SANITIZE_STRING);
@@ -50,7 +51,7 @@ switch ($act) {
     
     case "del":          // Suppression réparation
         if (!is_null($post)) {
-            $database->delete($post[id], 'reparations');
+            $database->delete($post['id'], 'reparations');
             header('Location: ?page=list');
         }
         else {
@@ -60,6 +61,11 @@ switch ($act) {
     
     default:
         break;
+}
+
+if (isset($_SESSION) && isset($_SESSION['login'])) {
+    //Script jQuery spécialisé pour la validation front-end des réparations
+    echo '<link type="text/javascript" href="./controleurs/scripts/reparation.js" />';
 }
 
 //Affichage
