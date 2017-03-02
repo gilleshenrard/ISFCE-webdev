@@ -23,7 +23,7 @@ $database->connect();
     <body>
         <?php
         try{
-            include "./controleurs/controleur_menu.php";
+            include "./controleurs/controleur_connexion.php";
             include './vues/menu_header_footer/header.php';
 
             switch ($page) {
