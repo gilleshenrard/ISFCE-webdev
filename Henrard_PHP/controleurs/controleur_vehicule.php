@@ -95,5 +95,10 @@ switch ($act){
         break;
 }
 
+if (isset($_SESSION) && isset($_SESSION['login'])) {
+    //Script jQuery spécialisé pour la validation front-end des véhicules
+    echo "<script src='controleurs/scripts/vehicule.js' type='text/javascript'></script>";
+}
+
 //Affichage des résultats
 include './vues/vehicule.php';
