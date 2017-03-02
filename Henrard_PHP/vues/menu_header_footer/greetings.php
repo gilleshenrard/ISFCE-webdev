@@ -1,7 +1,7 @@
 <!--Encart de connexion-->
 <div id="navbar" class="navbar-collapse collapse">
     <form method="get" action="" class="navbar-form navbar-right">
-        <input type="hidden" name="act" value="deco" />
+        <input type="hidden" name="act" value="deconnexion" />
         
         <div class="form-group">
             <label class="form-label" style="color: white">Bonjour, <?php echo $_SESSION['login'];?></label>
