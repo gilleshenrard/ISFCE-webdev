@@ -34,7 +34,7 @@
                 <form method="get" action="" class="form-inline">
                     <input type="hidden" name="page" value="vehicule" />
                     <input type="hidden" name="act" value="new" />
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-primary" <?php echo $input_disabled;?>>
                         <span class="glyphicon glyphicon-plus"></span>
                     </button>
                 </form>

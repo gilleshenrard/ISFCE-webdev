@@ -40,7 +40,7 @@
             </div>
 
             <div class="form-group">
-                <button type="submit" class="btn btn-primary" id="validate_vehicule">
+                <button type="submit" class="btn btn-primary" id="validate_vehicule" <?php echo $input_disabled;?>>
                     <span class="glyphicon glyphicon-ok"> Valider</span>
                 </button>
             </div>
@@ -67,7 +67,7 @@
             <div class="list-group-item">
                 <form method="post" action="?page=reparation&act=new" class="form-inline">
                     <input type="hidden" name="vehicule_FK" value="<?php echo $post['id'];?>" />
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-primary" <?php echo $input_disabled;?>>
                         <span class="glyphicon glyphicon-plus"></span>
                     </button>
                 </form>
@@ -75,6 +75,3 @@
         </ul>
     </div>
 </div>
-
-<!--Script jQuery spécialisé pour la validation front-end des véhicules-->
-<script src='controleurs/scripts/vehicule.js' type='text/javascript'></script>

@@ -20,7 +20,7 @@
                 </button>
                 
                 <!--Bouton de suppression : input simple au lieu d'un submit-->
-                <button type="text" class="btn btn-danger" name="del" value="true">
+                <button type="text" class="btn btn-danger" name="del" value="true" <?php echo $input_disabled;?>>
                     <span class="glyphicon glyphicon-trash"></span>
                 </button>
             </div>

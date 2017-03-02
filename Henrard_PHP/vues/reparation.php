@@ -36,13 +36,10 @@
             <input type="hidden" name="vehicule_FK" value="<?php echo is_null($post['vehicule_FK']) ? "-1" : $post['vehicule_FK'];?>" />
 
             <div class="form-group">
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" class="btn btn-primary" <?php echo $input_disabled;?>>
                     <span class="glyphicon glyphicon-ok"> Valider</span>
                 </button>
             </div>
         </form>
     </div>
 </div>
-
-<!--Script jQuery spécialisé pour la validation front-end des réparations-->
-<link type="text/javascript" href="./controleurs/scripts/reparation.js" />
