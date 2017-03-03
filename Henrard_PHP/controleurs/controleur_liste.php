@@ -19,7 +19,7 @@ switch ($search){
     default :       //Mot-clef recherché
         $vehicles = $database->search_vehicle($search);
         if(sizeof($vehicles, 0) <= 0){
-            $vehicles = array("Aucun véhicule trouvé");
+            $vehicles = array("<li class='list-group-item'><strong>Aucun véhicule trouvé</strong></li>");
         }
 }
 include './vues/liste_vehicules.php';

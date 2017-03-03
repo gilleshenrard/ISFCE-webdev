@@ -20,11 +20,11 @@
         <ul class="list-group">
             <?php
                 foreach ($vehicles as $v) {
-                    if (isset($v['plaque']) && isset($v['id'])) {
+                    if (isset($v['id'])) {
                         include './vues/list_items/list_item_vehicule.php';
                     }
                     else{
-                        echo '<li class="list-group-item"><strong>'.$v.'</strong></li>';
+                        echo $v;
                     }
                 }
             ?>
