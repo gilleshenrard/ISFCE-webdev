@@ -33,7 +33,7 @@
                 <span id="tip_date" class="help-block small tips" hidden="true">La date doit être alphanumérique</span>
             </div>
             
-            <input type="hidden" name="vehicule_FK" value="<?php echo is_null($post['vehicule_FK']) ? "-1" : $post['vehicule_FK'];?>" />
+            <input type="hidden" name="vehicule_FK" value="<?php echo $post['vehicule_FK'];?>" />
 
             <div class="form-group">
                 <button type="submit" class="btn btn-primary" <?php echo $input_disabled;?>>
