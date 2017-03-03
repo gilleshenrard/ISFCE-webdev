@@ -22,6 +22,7 @@ function checkValues(regex, id, group, tip){
 $(document).ready(function() {
     /**
      * Valide la valeur du numéro de chassis
+     * Structure : 12345-12345-12345-12345
      */
     $("#numero_chassis").focusout(function(){
         var regex = /^([0-9]{5}-){3}[0-9]{5}$/;
@@ -30,14 +31,16 @@ $(document).ready(function() {
         
     /**
      * Valide la valeur du numéro de plaque
+     * Structure : [1-]ABC-123 ou [1-]abc-123
      */
     $("#plaque").focusout(function(){
-        var regex = /^(1-)?[A-Z]{3}-[0-9]{3}$/;
+        var regex = /^(1-)?[a-zA-Z]{3}-[0-9]{3}$/;
         checkValues(regex, "#plaque", "#group_plaque", "#tip_plaque");
     });
     
     /**
      * Valide la valeur de la marque
+     * Structure : n'accepte que les alphanumériques
      */
     $("#marque").focusout(function () {
         var regex = /^[a-zA-z0-9]+$/;
@@ -46,6 +49,7 @@ $(document).ready(function() {
     
     /**
      * Valide la valeur du modèle
+     * Structure : n'accepte que les alphanumériques
      */
     $("#modele").focusout(function () {
         var regex = /^[a-zA-z0-9]+$/;

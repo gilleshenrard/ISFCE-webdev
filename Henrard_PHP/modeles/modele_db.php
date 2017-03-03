@@ -53,7 +53,7 @@ class Db{
         // query à exécuter
         $sql = "SELECT * ";
         $sql.= "FROM vehicules";
-        $sql.= " WHERE :pl LIKE plaque ";
+        $sql.= " WHERE UCASE(:pl) LIKE plaque ";
         $sql.= " OR :num LIKE numero_chassis ";
         $sql.= " OR :ma LIKE marque ";
         $sql.= " OR :mo LIKE modele ";

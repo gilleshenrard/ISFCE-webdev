@@ -4,17 +4,17 @@ $opt = array(
     'numero_chassis' => array(
         'filter' => FILTER_CALLBACK,
         'options' => function($input){
-                        return preg_match('#^([0-9]{5}-){3}[0-9]{5}$#',$input) ? $input : null; }
+                        return preg_match('#^([0-9]{5}-){3}[0-9]{5}$#',$input) ? $input : FALSE; }
         ),
     'plaque' => array(
         'filter' => FILTER_CALLBACK,
         'options' => function($input){
-            return preg_match('#^(1-)?[A-Z]{3}-[0-9]{3}$#',$input) ? $input : null; }
+            return preg_match('#^(1-)?[A-Z]{3}-[0-9]{3}$#', strtoupper($input)) ? strtoupper($input) : FALSE; }
         ),
     'type' => array(
         'filter' => FILTER_CALLBACK,
         'options' => function($input){
-            return in_array($input, array('Voiture','Moto','Camion','Camionette')) ? $input : null; }
+            return in_array($input, array('Voiture','Moto','Camion','Camionette')) ? $input : FALSE; }
         ),
     'marque' => FILTER_SANITIZE_STRING,
     'modele' => FILTER_SANITIZE_STRING,
