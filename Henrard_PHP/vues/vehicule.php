@@ -32,10 +32,9 @@
             <div class="form-group">    
                 <label for="type">Type</label>
                 <select class="form-control" id="type" name="type" value="<?php echo $post['type'];?>">
-                    <option>Voiture</option>
-                    <option>Moto</option>
-                    <option>Camion</option>
-                    <option>Camionette</option>
+                    <?php foreach ($types_options as $value) {
+                        echo $value;
+                    }?>
                 </select>
             </div>
 
@@ -56,13 +55,10 @@
 
         <!--Affichage en boucle de toutes les réparations-->
         <ul class="list-group">
-            <?php
-                foreach ($rep as $r) {
-                    if (isset($r['intervention']) && isset($r['id'])) {
-                        include './controleurs/controleur_list_item_reparation.php';
-                    }
-                }
-            ?>
+            <?php foreach ($rep as $r) {
+                include './controleurs/controleur_list_item_reparation.php';
+            }?>
+
             <!--Bouton d'ajout de nouvelle réparation liée au véhicule-->
             <div class="list-group-item">
                 <form method="post" action="?page=reparation&act=new" class="form-inline">
