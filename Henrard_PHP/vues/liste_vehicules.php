@@ -18,13 +18,12 @@
     <!--Affichage en boucle de tous les véhicules-->
     <div class="row col-md-10">
         <ul class="list-group">
-            <?php
-                foreach ($vehicles as $v) {
-                    if (isset($v['id'])) {
+            <?php if (is_string($vehicles)) {
+                    echo $vehicles;
+                }
+                else {
+                    foreach ($vehicles as $v) {
                         include './vues/list_items/list_item_vehicule.php';
-                    }
-                    else{
-                        echo $v;
                     }
                 }
             ?>
