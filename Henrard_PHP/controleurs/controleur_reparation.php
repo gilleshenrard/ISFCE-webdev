@@ -32,7 +32,10 @@ switch ($act) {
         // Variable temporaire pour simplifier la vérification des filtres
         $eval = $post;
         unset($eval['id']);
+        //Si pas d'erreur ou de valeur vide (auquel cas, ne va pas commit dans la DB)
         if (!in_array(FALSE, $eval)) {
+            //Ajout dans la DB + récupération de l'ID
+            //  + lien vers la page d'édition, en cas de validation du formulaire
             $id = $database->add_reparation($post);
             $post['id']=$id;
             $act="edit";
@@ -41,7 +44,7 @@ switch ($act) {
     
     case "edit":     // Edition d'une réparation
         if(!in_array(FALSE, $post)){
-            //Verification des données et update dans la DB
+            //update dans la DB
             $database->update_repa($post);
         }
         else {
@@ -63,6 +66,7 @@ switch ($act) {
         break;
 }
 
+//Si session active
 if (isset($_SESSION) && isset($_SESSION['login'])) {
     //Script jQuery spécialisé pour la validation front-end des réparations
     echo '<link type="text/javascript" href="./controleurs/scripts/reparation.js" />';

@@ -1,6 +1,7 @@
 <li class='list-group-item'>
     <div class="container-fluid list_item_reparation">
         <form method='post' action='?page=reparation&act=edit' class='form-inline'>
+            <!--Affiche l'output généré dans le controleur de list item réparation-->
             <label class='col form-label col-md-9'><?php echo $display;?></label>
  
             <!--Série d'inputs cachés pour forcer la valeur de $_POST-->

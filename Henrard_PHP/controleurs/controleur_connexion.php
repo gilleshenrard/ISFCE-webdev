@@ -32,7 +32,8 @@ switch ($act) {
                     if ($login['password'] == $post["password"]) {
                         $_SESSION['login']=$login['login'];
 
-                        //réactivation des inputs et affichage de l'interface de déconnexion
+                        //Si pas de session en cours, que utilisateur trouvé et que password ok,
+                        //  réactivation des inputs et affichage de l'interface de déconnexion
                         $input_disabled="";
                         include './vues/menu_header_footer/greetings.php';
                     }
@@ -50,6 +51,7 @@ switch ($act) {
             break;
     
     case "deconnexion":     //Déconnexion de la session
+            //Destruction de la session
             session_unset();
             session_destroy();
 
@@ -58,6 +60,7 @@ switch ($act) {
             break;
 
     default:
+            //Si session en cours
             if (isset($_SESSION) && isset($_SESSION['login'])) {
                 //Affichage de l'interface de déconnexion
                 include './vues/menu_header_footer/greetings.php';
