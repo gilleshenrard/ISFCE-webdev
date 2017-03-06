@@ -42,9 +42,17 @@
 				<!--Input pour le type de support-->
 				<div id="group_support" class="form-group has-feedback">
 					<label for="input_support" class="control-label">Année de la série</label>
-					<input type="text" id="input_support" name="nom" class="form-control" placeholder="2013" />
+					<input type="text" id="input_support" name="nom" class="form-control" placeholder="DVD" />
 					<span id="icon_support" class="form-control-feedback glyphicon"></span>
-					<span id="help_support" class="help-block small">L'année doit se tenir entre 1900 et 2017</span>
+					<span id="help_support" class="help-block small"></span>
+				</div>
+
+				<!--Input pour la langue-->
+				<div id="group_langue" class="form-group has-feedback">
+					<label for="input_langue" class="control-label">Langue de la série</label>
+					<input type="text" id="input_langue" name="nom" class="form-control" placeholder="Francais" />
+					<span id="icon_langue" class="form-control-feedback glyphicon"></span>
+					<span id="help_langue" class="help-block small">La langue ne peut être que dans : Francais, Anglais, Néérlandais ou Espagnol</span>
 				</div>
 
                 <button id="button_submit" type="SUBMIT" class="btn btn-success">Envoyer ce formulaire</button>
@@ -61,18 +69,31 @@
 				 * @param {type} regex
 				 * @param {type} champ
 				 */
-				function validate(regex, champ){
+				function validate(regex, champ, warning_regex){
 					if(regex.test($("#input_"+champ).val())){
 						$("#group_"+champ).removeClass("has-error");
+						$("#group_"+champ).removeClass("has-warning");
 						$("#group_"+champ).addClass("has-success");
 						$("#icon_"+champ).removeClass("glyphicon-remove");
+						$("#icon_"+champ).removeClass("glyphicon-warning-sign");
 						$("#icon_"+champ).addClass("glyphicon-ok");
 						$("#help_"+champ).addClass("hidden");
 					}
+					else if(warning_regex !== undefined && warning_regex.test($("#input_"+champ).val())){
+						$("#group_"+champ).removeClass("has-error");
+						$("#group_"+champ).removeClass("has-success");
+						$("#group_"+champ).addClass("has-warning");
+						$("#icon_"+champ).removeClass("glyphicon-remove");
+						$("#icon_"+champ).removeClass("glyphicon-success");
+						$("#icon_"+champ).addClass("glyphicon-warning-sign");
+						$("#help_"+champ).removeClass("hidden");
+					}
 					else{
 						$("#group_"+champ).removeClass("has-success");
+						$("#group_"+champ).removeClass("has-warning");
 						$("#group_"+champ).addClass("has-error");
 						$("#icon_"+champ).removeClass("glyphicon-ok");
+						$("#icon_"+champ).removeClass("glyphicon-warning-sign");
 						$("#icon_"+champ).addClass("glyphicon-remove");
 						$("#help_"+champ).removeClass("hidden");
 					}
@@ -84,7 +105,14 @@
 				$("#button1").click(function (){
 					validate(/^[A-Z][a-zA-Z]{5}/, "nom");
 					validate(/^((199[5-9])|(200[0-9])|(201[0-7]))$/, "annee");
-					validate(/^((199[5-9])|(200[0-9])|(201[0-7]))$/, "annee");
+					validate(/^(DVD|Blu-Ray)$/, "support", /^VHS$/);
+					if("#input_support".val() === "VHS"){
+						$("#help_support").text("test");
+					}
+					else{
+						$("#help_support").text("Le support ne peut être que : DVD, Blu-Ray ou VHS");
+					}
+					validate(/^(( )*(Francais|Anglais|Néérlandais|Espagnol)){1,3}$/, "langue");
 				});
             }); // FIN DES SCRIPTS, NE PAS MODIFIER     
         </script>
