@@ -15,19 +15,37 @@
             <h1>Boutons1</h1>
             <button id="button1" class="btn btn-info btn-block">Validation</button>
             <button id="button2" class="btn btn-info btn-block">ANNEE montrer/cacher</button>
-            <button id="button1" class="btn btn-info btn-block">SUPPORT activer/désactiver</button>
-            <button id="button1" class="btn btn-info btn-block">LANGUE française</button>
+            <button id="button3" class="btn btn-info btn-block">SUPPORT activer/désactiver</button>
+            <button id="button4" class="btn btn-info btn-block">LANGUE française</button>
         </div>
 
         <div class="col-xs-9">
             <h1>Formulaire1 : achat de séries télévisées en ligne</h1>
             <form id="form1" method="POST" action="formulaire1_reception.php" class="well">
 
+				<!--Input pour le nom de la série-->
+				<div id="group_nom" class="form-group has-feedback">
+					<label for="input_nom" class="control-label">Nom de la série</label>
+					<input type="text" id="input_nom" name="nom" class="form-control" placeholder="Under The Dome" />
+					<span id="icon_nom" class="form-control-feedback glyphicon"></span>
+					<span id="help_nom" class="help-block small">Le nom doit commencer par une majuscule, puis 5 lettres</span>
+				</div>
 
+				<!--Input pour l'année de la série-->
+				<div id="group_annee" class="form-group has-feedback">
+					<label for="input_annee" class="control-label">Année de la série</label>
+					<input type="text" id="input_annee" name="nom" class="form-control" placeholder="2013" />
+					<span id="icon_annee" class="form-control-feedback glyphicon"></span>
+					<span id="help_annee" class="help-block small">L'année doit se tenir entre 1900 et 2017</span>
+				</div>
 
-                <!--EXERCICE : COMPLETER LE FORMULAIRE-->
-
-
+				<!--Input pour le type de support-->
+				<div id="group_support" class="form-group has-feedback">
+					<label for="input_support" class="control-label">Année de la série</label>
+					<input type="text" id="input_support" name="nom" class="form-control" placeholder="2013" />
+					<span id="icon_support" class="form-control-feedback glyphicon"></span>
+					<span id="help_support" class="help-block small">L'année doit se tenir entre 1900 et 2017</span>
+				</div>
 
                 <button id="button_submit" type="SUBMIT" class="btn btn-success">Envoyer ce formulaire</button>
             </form>
@@ -36,16 +54,38 @@
 
         <script type="text/javascript">
             $(document).ready(function () { // DEBUT DES SCRIPTS, NE PAS MODIFIER
-
-
-
-                // Tous vos scripts ICI - NB utiliser Source/Format ou SHIFT-ALT-F
-
-
-
-
-
-
+				
+				/**
+				 * Vérifie le champ donné avec le regex donné
+				 * Change le design du champ en conséquence
+				 * @param {type} regex
+				 * @param {type} champ
+				 */
+				function validate(regex, champ){
+					if(regex.test($("#input_"+champ).val())){
+						$("#group_"+champ).removeClass("has-error");
+						$("#group_"+champ).addClass("has-success");
+						$("#icon_"+champ).removeClass("glyphicon-remove");
+						$("#icon_"+champ).addClass("glyphicon-ok");
+						$("#help_"+champ).addClass("hidden");
+					}
+					else{
+						$("#group_"+champ).removeClass("has-success");
+						$("#group_"+champ).addClass("has-error");
+						$("#icon_"+champ).removeClass("glyphicon-ok");
+						$("#icon_"+champ).addClass("glyphicon-remove");
+						$("#help_"+champ).removeClass("hidden");
+					}
+				}
+				
+				/**
+				 * Event au clic du bouton de validation
+				 */
+				$("#button1").click(function (){
+					validate(/^[A-Z][a-zA-Z]{5}/, "nom");
+					validate(/^((199[5-9])|(200[0-9])|(201[0-7]))$/, "annee");
+					validate(/^((199[5-9])|(200[0-9])|(201[0-7]))$/, "annee");
+				});
             }); // FIN DES SCRIPTS, NE PAS MODIFIER     
         </script>
 
