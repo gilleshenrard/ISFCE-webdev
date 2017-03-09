@@ -7,11 +7,15 @@ function checkValues(regex, id){
     if (regex.test($("#input_"+id).val())) {
         $("#group_"+id).removeClass("has-error");
         $("#group_"+id).addClass("has-success");
+		$("#fb_"+id).removeClass("glyphicon-remove");
+		$("#fb_"+id).addClass("glyphicon-ok");
         $("#tip_"+id).addClass("hidden");
         $("#validate_vehicule").prop("disabled",false);
     } else {
         $("#group_"+id).removeClass("has-success");
         $("#group_"+id).addClass("has-error");
+		$("#fb_"+id).removeClass("glyphicon-ok");
+		$("#fb_"+id).addClass("glyphicon-remove");
         $("#tip_"+id).removeClass("hidden");
         $("#validate_vehicule").prop("disabled",true);
     }
