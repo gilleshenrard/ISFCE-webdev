@@ -39,18 +39,24 @@ switch ($act) {
         unset($eval['id']);
         //Si pas d'erreur ou de valeur vide (auquel cas, ne va pas commit dans la DB)
         if (!in_array(FALSE, $eval)) {
-            //Ajout dans la DB + récupération de l'ID
-            //  + lien vers la page d'édition, en cas de validation du formulaire
-            $newid = $db_reparations->add($post);
-            $post['id']=$newid;
+            //si aucune session ouverte, n'applique pas les changements
+            if (isset($_SESSION) && isset($_SESSION["login"])) {
+                //Ajout dans la DB + récupération de l'ID
+                //  + lien vers la page d'édition, en cas de validation du formulaire
+                $newid = $db_reparations->add($post);
+                $post['id']=$newid;
+            }
             $act="edit";
         }
         break;
     
     case "edit":     // Edition d'une réparation
         if(!in_array(FALSE, $post)){
-            //update dans la DB
-            $db_reparations->update($post);
+            //si aucune session ouverte, n'applique pas les changements
+            if (isset($_SESSION) && isset($_SESSION["login"])) {
+                //update dans la DB
+                $db_reparations->update($post);
+            }
         }
         else {
             throw new Exception("Valeur invalide dans un champ");
@@ -59,8 +65,11 @@ switch ($act) {
     
     case "del":          // Suppression réparation
         if (!is_null($post)) {
-            $db_reparations->delete($post['id'], 'id');
-            header('Location: ?page=list');
+            //si aucune session ouverte, n'applique pas les changements
+            if (isset($_SESSION) && isset($_SESSION["login"])) {
+                $db_reparations->delete($post['id'], 'id');
+                header('Location: ?page=list');
+            }
         }
         else {
             throw new Exception($nullerror);

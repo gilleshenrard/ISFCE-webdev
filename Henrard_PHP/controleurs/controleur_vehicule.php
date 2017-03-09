@@ -65,7 +65,10 @@ switch ($act){
             //Si formulaire non-vide recu et pas d'erreur, update dans la DB
             if (!is_null($post)){
                 if(!in_array(FALSE, $post)){
-                    $db_vehicules->update($post);
+                    //si aucune session ouverte, n'applique pas les changements
+                    if (isset($_SESSION) && isset($_SESSION["login"])) {
+                        $db_vehicules->update($post);
+                    }
                     $rep = $db_reparations->search($post['id'], "vehicule_FK", TRUE);
                 }
                 else {
@@ -85,9 +88,12 @@ switch ($act){
                 unset($eval['id']);
                 //Si aucune valeur incorrecte
                 if(!in_array(FALSE, $eval)){
-                    //Ajout dans la DB + recuperation de l'ID cree
-                    $newid = $db_vehicules->add($post);
-                    $post['id']=$newid;
+                    //Si aucune session ouverte, n'applique pas les changements
+                    if (isset($_SESSION) && isset($_SESSION["login"])) {
+                        //Ajout dans la DB + recuperation de l'ID cree
+                        $newid = $db_vehicules->add($post);
+                        $post['id']=$newid;
+                    }
                     
                     //Redirection de la prochaine page vers la page d'edition
                     $act="edit";
@@ -100,9 +106,12 @@ switch ($act){
     
     case "del": //Suppression d'un véhicule
         if (!is_null($post)) {
-            //Suppression des réparations liées, puis suppression du véhicule
-            $db_reparations->delete($post['id'], "vehicule_FK");
-            $db_vehicules->delete($post['id'], 'id');
+            //si aucune session ouverte, n'applique pas les changements
+            if (isset($_SESSION) && isset($_SESSION["login"])) {
+                //Suppression des réparations liées, puis suppression du véhicule
+                $db_reparations->delete($post['id'], "vehicule_FK");
+                $db_vehicules->delete($post['id'], 'id');
+            }
 
             //Redirection par requête http vers la page de liste
             header('Location: ?page=list');
