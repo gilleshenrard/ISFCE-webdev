@@ -17,19 +17,19 @@
             <input type="hidden" id="id_reparation" name="id" value="<?php echo $post['id'];?>" class="form-control" />
 
             <div class="form-group" id='group_intervention'>
-                <label for="intervention">Intervention</label>
-                <input type="text" id="intervention" name="intervention" value="<?php echo $post['intervention'];?>" class="form-control" />
+                <label for="input_intervention">Intervention</label>
+                <input type="text" id="input_intervention" name="intervention" value="<?php echo $post['intervention'];?>" class="form-control" />
                 <span id="tip_intervention" class="help-block small tips" hidden="true">L'intitulé de l'intervention doit être alphanumérique</span>
             </div>
 
             <div class="form-group">
-                <label for="description">Description</label>
-                <textarea rows="5" id="description" name="description" class="form-control"><?php echo $post['description'];?></textarea>
+                <label for="input_description">Description</label>
+                <textarea rows="5" id="input_description" name="description" class="form-control"><?php echo $post['description'];?></textarea>
             </div>
 
             <div class="form-group" id='group_date'>
-                <label for="date">Date</label>
-                <input type="date" id="date" name="date" value="<?php echo $post['date'];?>" class="form-control" />
+                <label for="input_date">Date</label>
+                <input type="date" id="input_date" name="date" value="<?php echo $post['date'];?>" class="form-control" />
                 <span id="tip_date" class="help-block small tips" hidden="true">La date doit être alphanumérique</span>
             </div>
             
