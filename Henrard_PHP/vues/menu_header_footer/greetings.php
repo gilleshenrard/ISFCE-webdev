@@ -4,7 +4,7 @@
         <input type="hidden" name="act" value="deconnexion" />
         
         <div class="form-group">
-            <label class="form-label" style="color: white">Bonjour, <?php echo $_SESSION['login'];?></label>
+            <label class="form-label" style="color: white; padding-right: 20px">Bonjour, <?php echo $_SESSION['login'];?></label>
         </div>
 
         <div class="form-group">
