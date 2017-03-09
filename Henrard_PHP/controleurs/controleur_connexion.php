@@ -27,7 +27,7 @@ switch ($act) {
     case "connexion":       //Connexion
             if(!isset($_SESSION) || sizeof($_SESSION, 0) <= 0) {
                 //recherche du login dans la DB et update de la session si password OK
-                $login = $database->search_user($post['login']);
+                $login = $database->searchBy_Param($post['login'], "login", "utilisateurs");
                 if (sizeof($login, 0) > 0) {
                     if ($login['password'] == $post["password"]) {
                         $_SESSION['login']=$login['login'];

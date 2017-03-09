@@ -43,7 +43,7 @@ switch ($act){
     case "search":  //Recherche d'un véhicule
             if(isset($post['id'])){
                 $post=$database->searchBy_ID("vehicules", $post['id']);
-                $rep = $database->searchBy_FK("reparations", $post['id']);
+                $rep = $database->searchBy_Param($post['id'], "vehicule_FK", "reparations", TRUE);
                 
                 //lien vers page d'édition à la prochaine validation
                 $act='edit';
@@ -58,7 +58,7 @@ switch ($act){
             if (!is_null($post)){
                 if(!in_array(FALSE, $post)){
                     $database->update_veh($post);
-                    $rep = $database->searchBy_FK("reparations", $post['id']);
+                    $rep = $database->searchBy_Param($post['id'], "vehicule_FK", "reparations", TRUE);
                 }
                 else {
                     throw new Exception("Valeur invalide dans un champ");

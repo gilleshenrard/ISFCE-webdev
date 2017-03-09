@@ -17,7 +17,7 @@ switch ($search){
         break;
     
     default :       //Mot-clef recherché
-        $vehicles = $database->search_vehicle($search);
+        $vehicles = $database->searchBy_All($search, "vehicules");
         if(sizeof($vehicles, 0) <= 0){
             $vehicles = (string)"<li class='list-group-item'><strong>Aucun véhicule trouvé</strong></li>";
         }

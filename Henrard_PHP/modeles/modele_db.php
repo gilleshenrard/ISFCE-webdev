@@ -5,6 +5,10 @@
 class Db{
     private static $connection;
 
+    /**
+     * Lance une connexion à la DB si aucune n'est en cours
+     * @return type
+     */
     public function connect(){
         // if no connection exist to the specified database, create a one
         if (!isset(Db::$connection)) {
@@ -14,9 +18,15 @@ class Db{
         return Db::$connection;
     }
 
+    /**
+     * Liste les lignes d'une table
+     * @param type $table
+     * @return type
+     * @throws Exception
+     */
     public function list_table($table){
         if (!in_array($table, array("vehicules", "reparations", "utilisateurs"))) {
-            throw new Exception("Table ".$table." non-trouvée en base de données");
+            throw new Exception("Table ".$table." non-trouvée");
         }
         
         // query à exécuter
@@ -30,9 +40,16 @@ class Db{
         return $stmt->fetchall();
     }
     
+    /**
+     * Recherche un ID dans la table renseignée
+     * @param type $table
+     * @param type $str
+     * @return type
+     * @throws Exception
+     */
     public function searchBy_ID($table, $str){
         if (!in_array($table, array("vehicules", "reparations", "utilisateurs"))) {
-            throw new Exception("Mauvaise valeur pour la table recherchée!");
+            throw new Exception("Table ".$table." non-trouvée");
         }
 
         // query à exécuter
@@ -49,68 +66,89 @@ class Db{
         return $stmt->fetch(PDO::FETCH_LAZY);
     }
     
-    public function search_vehicle($str){
-        // query à exécuter
-        $sql = "SELECT * ";
-        $sql.= "FROM vehicules";
-        $sql.= " WHERE UCASE(:pl) LIKE plaque ";
-        $sql.= " OR :num LIKE numero_chassis ";
-        $sql.= " OR :ma LIKE marque ";
-        $sql.= " OR :mo LIKE modele ";
-        $sql.= " OR :ty LIKE type ";
-
-        // preparation de la query (sécurisée)
-        $stmt = Db::$connection->prepare($sql);
-        $stmt->bindParam(":num", $str);
-        $stmt->bindParam(":pl", $str);
-        $stmt->bindParam(":ma", $str);
-        $stmt->bindParam(":mo", $str);
-        $stmt->bindParam(":ty", $str);
-
-        // execution et retour des résultats
-        $stmt->execute();
-        return $stmt->fetchall();
-    }
-    
-    public function search_user($str){
-        // query à exécuter
-        $sql = "SELECT * ";
-        $sql.= "FROM utilisateurs";
-        $sql.= " WHERE :login LIKE login";
-
-        // preparation de la query (sécurisée)
-        $stmt = Db::$connection->prepare($sql);
-        $stmt->bindParam(":login", $str);
-
-        // execution et retour des résultats
-        $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_LAZY);
-    }
-    
-    public function searchBy_FK($table, $fk){
+    /**
+     * Recherche la valeur fournie dans toutes les valeurs possibles de la table
+     * @param type $str
+     * @param type $table
+     * @return type
+     * @throws Exception
+     */
+    public function searchBy_All($str, $table){
         if (!in_array($table, array("vehicules", "reparations", "utilisateurs"))) {
-            throw new Exception("Mauvaise valeur pour la table recherchée!");
+            throw new Exception("Table ".$table." non-trouvée");
         }
+
+        //Récupération de tous les noms de colonne de la table
+        $stmt = Db::$connection->prepare("DESCRIBE ".$table);
+        $stmt->execute();
+        $columns = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
+        //Préparation de la query string
+        $sql = "SELECT * FROM ".$table." WHERE ";
+        foreach ($columns as $value) {
+            $sql.= ":".$value." LIKE ".$value." OR ";
+        }
+        $sql = rtrim($sql," OR ");
         
+        //Préparation de la query elle-même
+        $stmt2 = Db::$connection->prepare($sql);
+        foreach ($columns as $key) {
+            $stmt2->bindParam(":".$key, $str);
+        }
+
+        //Exécution et renvoi des résultats
+        $stmt2->execute();
+        return $stmt2->fetchall();
+    }
+    
+    /**
+     * Cherche la valeur fournie en tant que paramètre dans la table
+     * @param type $str
+     * @param type $param
+     * @param type $table
+     * @param type $searchall
+     * @return type
+     * @throws Exception
+     */
+    public function searchBy_Param($str, $param, $table, $searchall=NULL){
+        if (!in_array($table, array("vehicules", "reparations", "utilisateurs"))) {
+            throw new Exception("Table ".$table." non-trouvée");
+        }
         // query à exécuter
         $sql = "SELECT * ";
         $sql.= "FROM ".$table;
-        $sql.= " WHERE vehicule_FK LIKE :fk";
+        $sql.= " WHERE :param LIKE ".$param;
 
+        // preparation de la query (sécurisée)
         $stmt = Db::$connection->prepare($sql);
-        $stmt->bindParam(":fk", $fk);
+        $stmt->bindParam(":param", $str);
 
         // execution et retour des résultats
         $stmt->execute();
-        return $stmt->fetchall();
+        if($searchall != TRUE){
+            return $stmt->fetch(PDO::FETCH_LAZY);
+        }
+        else{
+            return $stmt->fetchall();
+        }
     }
     
-    public function deleteAllBy_FK($fk){
-        $sql  = "DELETE FROM reparations";
-        $sql .= " WHERE vehicule_FK = :fk";
+    /**
+     * Supprime toutes les lignes dont le paramètre correspondent à la valeur envoyée
+     * @param type $str
+     * @param type $param
+     * @param type $table
+     * @throws Exception
+     */
+    public function deleteBy_Param($str, $param, $table){
+        if (!in_array($table, array("vehicules", "reparations", "utilisateurs"))) {
+            throw new Exception("Table ".$table." non-trouvée");
+        }
+        $sql  = "DELETE FROM ".$table;
+        $sql .= " WHERE ".$param." = :param";
         
         $stmt = Db::$connection->prepare($sql);
-        $stmt->bindParam(":fk", $fk);
+        $stmt->bindParam(":param", $str);
         $stmt->execute();
     }
 
