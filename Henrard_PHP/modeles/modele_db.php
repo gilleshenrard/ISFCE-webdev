@@ -19,15 +19,39 @@ class Db{
     }
 
     /**
+     * Vérifie si la table et la colonne envoyés existent
+     * @param type $table
+     * @param type $param
+     * @return boolean
+     * @throws Exception
+     */
+    private function check_Table_Columns($table, $param=NULL){
+        //vérifie si le nom de la table est soit vehicules, reparations ou utilisateurs
+        if (!in_array($table, array("vehicules", "reparations", "utilisateurs"))) {
+            throw new Exception("Table ".$table." non-trouvée");
+        }
+        
+        //Récupération de tous les noms de colonne de la table
+        $stmt = Db::$connection->prepare("DESCRIBE ".$table);
+        $stmt->execute();
+        $columns = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
+        //vérifie que la colonne existe dans la table renseignée
+        if ($param != NULL && !in_array($param, $columns)) {
+                throw new Exception("Colonne non-trouvée dans la DB");
+        }
+        
+        return $columns;
+    }
+
+    /**
      * Liste les lignes d'une table
      * @param type $table
      * @return type
      * @throws Exception
      */
     public function list_table($table){
-        if (!in_array($table, array("vehicules", "reparations", "utilisateurs"))) {
-            throw new Exception("Table ".$table." non-trouvée");
-        }
+        $this->check_Table_Columns($table);
         
         // query à exécuter
         $sql = "SELECT * ";
@@ -48,9 +72,7 @@ class Db{
      * @throws Exception
      */
     public function searchBy_ID($table, $str){
-        if (!in_array($table, array("vehicules", "reparations", "utilisateurs"))) {
-            throw new Exception("Table ".$table." non-trouvée");
-        }
+        $this->check_Table_Columns($table);
 
         // query à exécuter
         $sql = "SELECT * ";
@@ -74,19 +96,12 @@ class Db{
      * @throws Exception
      */
     public function searchBy_All($str, $table){
-        if (!in_array($table, array("vehicules", "reparations", "utilisateurs"))) {
-            throw new Exception("Table ".$table." non-trouvée");
-        }
-
-        //Récupération de tous les noms de colonne de la table
-        $stmt = Db::$connection->prepare("DESCRIBE ".$table);
-        $stmt->execute();
-        $columns = $stmt->fetchAll(PDO::FETCH_COLUMN);
+        $columns = $this->check_Table_Columns($table);
 
         //Préparation de la query string
         $sql = "SELECT * FROM ".$table." WHERE ";
-        foreach ($columns as $value) {
-            $sql.= ":".$value." LIKE ".$value." OR ";
+        foreach ($columns as $col) {
+            $sql.= ":".$col." LIKE ".$col." OR ";
         }
         $sql = rtrim($sql," OR ");
         
@@ -111,9 +126,8 @@ class Db{
      * @throws Exception
      */
     public function searchBy_Param($str, $param, $table, $searchall=NULL){
-        if (!in_array($table, array("vehicules", "reparations", "utilisateurs"))) {
-            throw new Exception("Table ".$table." non-trouvée");
-        }
+        $this->check_Table_Columns($table, $param);
+        
         // query à exécuter
         $sql = "SELECT * ";
         $sql.= "FROM ".$table;
@@ -141,9 +155,8 @@ class Db{
      * @throws Exception
      */
     public function deleteBy_Param($str, $param, $table){
-        if (!in_array($table, array("vehicules", "reparations", "utilisateurs"))) {
-            throw new Exception("Table ".$table." non-trouvée");
-        }
+        $this->check_Table_Columns($table, $param);
+        
         $sql  = "DELETE FROM ".$table;
         $sql .= " WHERE ".$param." = :param";
         
