@@ -4,12 +4,12 @@ $search = filter_input(INPUT_POST, 'search', FILTER_SANITIZE_STRING);
 
 //Connexion à la DB
 include_once './modeles/modele_db.php';
-$database = new Db();
+$database = new Db("vehicules");
 $database->connect();
 
 switch ($search){
     case NULL:      //Pas de plaque recherchée
-        $vehicles =  $database->list_table("vehicules");
+        $vehicles =  $database->list_table();
         break;
     
     case FALSE:     //Erreur avec $_POST
@@ -17,7 +17,7 @@ switch ($search){
         break;
     
     default :       //Mot-clef recherché
-        $vehicles = $database->searchBy_All($search, "vehicules");
+        $vehicles = $database->searchAll($search);
         if(sizeof($vehicles, 0) <= 0){
             $vehicles = (string)"<li class='list-group-item'><strong>Aucun véhicule trouvé</strong></li>";
         }

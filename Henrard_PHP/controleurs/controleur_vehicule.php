@@ -39,11 +39,19 @@ else {
     unset($post['del']);
 }
 
+//Connexion à la DB + création d'un objet par table pour vehicules et reparations
+include_once './modeles/modele_db.php';
+$db_vehicules = new Db("vehicules");
+$db_vehicules->connect();
+
+$db_reparations = new Db("reparations");
+$db_reparations->connect();
+
 switch ($act){
     case "search":  //Recherche d'un véhicule
             if(isset($post['id'])){
-                $post=$database->searchBy_ID("vehicules", $post['id']);
-                $rep = $database->searchBy_Param($post['id'], "vehicule_FK", "reparations", TRUE);
+                $post=$db_vehicules->search($post['id'], "id");
+                $rep = $db_reparations->search($post['id'], "vehicule_FK", TRUE);
                 
                 //lien vers page d'édition à la prochaine validation
                 $act='edit';
@@ -57,8 +65,8 @@ switch ($act){
             //Si formulaire non-vide recu et pas d'erreur, update dans la DB
             if (!is_null($post)){
                 if(!in_array(FALSE, $post)){
-                    $database->update_veh($post);
-                    $rep = $database->searchBy_Param($post['id'], "vehicule_FK", "reparations", TRUE);
+                    $db_vehicules->update($post);
+                    $rep = $db_reparations->search($post['id'], "vehicule_FK", TRUE);
                 }
                 else {
                     throw new Exception("Valeur invalide dans un champ");
@@ -78,8 +86,8 @@ switch ($act){
                 //Si aucune valeur incorrecte
                 if(!in_array(FALSE, $eval)){
                     //Ajout dans la DB + recuperation de l'ID cree
-                    $id = $database->add_vehicle($post);
-                    $post['id']=$id;
+                    $newid = $db_vehicules->add($post);
+                    $post['id']=$newid;
                     
                     //Redirection de la prochaine page vers la page d'edition
                     $act="edit";
@@ -93,8 +101,8 @@ switch ($act){
     case "del": //Suppression d'un véhicule
         if (!is_null($post)) {
             //Suppression des réparations liées, puis suppression du véhicule
-            $database->deleteAllBy_FK($post['id']);
-            $database->delete($post['id'], 'vehicules');
+            $db_reparations->delete($post['id'], "vehicule_FK");
+            $db_vehicules->delete($post['id'], 'id');
 
             //Redirection par requête http vers la page de liste
             header('Location: ?page=list');

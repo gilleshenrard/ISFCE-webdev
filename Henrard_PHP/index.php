@@ -2,11 +2,6 @@
 session_start();
 
 $page = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_STRING);
-
-//Connexion à la DB
-include_once './modeles/modele_db.php';
-$database = new Db();
-$database->connect();
 ?>
 
 <!DOCTYPE html>

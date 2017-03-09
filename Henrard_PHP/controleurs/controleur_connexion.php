@@ -13,6 +13,11 @@ if ($act=="connexion" && (is_null($post) || in_array('', $post))) {
     throw new Exception('Valeurs de connexion incorrectes');
 }
 
+//Connexion à la DB
+include_once './modeles/modele_db.php';
+$db_users = new Db("utilisateurs");
+$db_users->connect();
+
 //création de la structure de la barre de navigation
 echo '<nav class="navbar navbar-inverse navbar-fixed-top">';
 echo '<div class="container">';
@@ -27,7 +32,7 @@ switch ($act) {
     case "connexion":       //Connexion
             if(!isset($_SESSION) || sizeof($_SESSION, 0) <= 0) {
                 //recherche du login dans la DB et update de la session si password OK
-                $login = $database->searchBy_Param($post['login'], "login", "utilisateurs");
+                $login = $db_users->search($post['login'], "login");
                 if (sizeof($login, 0) > 0) {
                     if ($login['password'] == $post["password"]) {
                         $_SESSION['login']=$login['login'];
