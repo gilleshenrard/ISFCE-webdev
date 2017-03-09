@@ -7,12 +7,12 @@ function checkValues(regex, id){
     if (regex.test($("#input_"+id).val())) {
         $("#group_"+id).removeClass("has-error");
         $("#group_"+id).addClass("has-success");
-        $("#tip_"+id).hide();
+        $("#tip_"+id).addClass("hidden");
         $("#validate_vehicule").prop("disabled",false);
     } else {
         $("#group_"+id).removeClass("has-success");
         $("#group_"+id).addClass("has-error");
-        $("#tip_"+id).show();
+        $("#tip_"+id).removeClass("hidden");
         $("#validate_vehicule").prop("disabled",true);
     }
 }

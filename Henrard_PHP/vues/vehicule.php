@@ -8,25 +8,25 @@
             <div class="form-group" id='group_chassis'>
                 <label for="input_chassis">Numéro de chassis</label>
                 <input type="text" id="input_chassis" name="numero_chassis" value="<?php echo $post['numero_chassis'];?>" class="form-control" />
-                <span id="tip_chassis" class="help-block small tips" hidden>Le numéro de chassis doit ressembler à : 12345-12345-12345-12345</span>
+                <span id="tip_chassis" class="help-block small tips hidden">Le numéro de chassis doit ressembler à : 12345-12345-12345-12345</span>
             </div>
 
             <div class="form-group" id='group_plaque'>    
                 <label for="input_plaque">Numéro de plaque</label>
                 <input type="text" id="input_plaque" name="plaque" value="<?php echo $post['plaque'];?>" class="form-control" />
-                <span id="tip_plaque" class="help-block small tips" hidden>Le numéro de plaque doit ressembler à : (1-)ABC-123</span>
+                <span id="tip_plaque" class="help-block small tips hidden">Le numéro de plaque doit ressembler à : (1-)ABC-123</span>
             </div>
 
             <div class="form-group group_marque">    
                 <label for="input_marque">Marque</label>
                 <input type="text" id="input_marque" name="marque" value="<?php echo $post['marque'];?>" class="form-control" />
-                <span id="tip_marque" class="help-block small tips" hidden>Le modèle ne peut contenir que des caractères alphanumériques</span>
+                <span id="tip_marque" class="help-block small tips hidden">Le modèle ne peut contenir que des caractères alphanumériques</span>
             </div>
 
             <div class="form-group group_modele">
                 <label for="input_modele">Modèle</label>
                 <input type="text" id="input_modele" name="modele" value="<?php echo $post['modele'];?>" class="form-control" />
-                <span id="tip_modele" class="help-block small tips" hidden>Le modèle ne peut contenir que des caractères alphanumériques</span>
+                <span id="tip_modele" class="help-block small tips hidden">Le modèle ne peut contenir que des caractères alphanumériques</span>
             </div>
 
             <div class="form-group">    
