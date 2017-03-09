@@ -19,7 +19,7 @@
             <div class="form-group" id='group_intervention'>
                 <label for="input_intervention">Intervention</label>
                 <input type="text" id="input_intervention" name="intervention" value="<?php echo $post['intervention'];?>" class="form-control" />
-                <span id="tip_intervention" class="help-block small tips" hidden="true">L'intitulé de l'intervention doit être alphanumérique</span>
+                <span id="tip_intervention" class="help-block small tips hidden" hidden="true">L'intitulé de l'intervention doit être alphanumérique</span>
             </div>
 
             <div class="form-group">
@@ -30,7 +30,7 @@
             <div class="form-group" id='group_date'>
                 <label for="input_date">Date</label>
                 <input type="date" id="input_date" name="date" value="<?php echo $post['date'];?>" class="form-control" />
-                <span id="tip_date" class="help-block small tips" hidden="true">La date doit être alphanumérique</span>
+                <span id="tip_date" class="help-block small tips hidden" hidden="true">La date doit être alphanumérique</span>
             </div>
             
             <input type="hidden" name="vehicule_FK" value="<?php echo $post['vehicule_FK'];?>" />
