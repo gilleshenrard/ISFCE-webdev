@@ -4,13 +4,19 @@ $args = array(
     'id' => FILTER_SANITIZE_NUMBER_INT,
     'intervention' => FILTER_SANITIZE_STRING,
     'description' => FILTER_SANITIZE_STRING,
-    'date' => FILTER_SANITIZE_STRING,
+    'date' => array(
+		'filter' => FILTER_CALLBACK,
+		'options' => function ($input){
+						return preg_match('#(19|20)[0-9]{2}-(0[0-9]|1[12])-([0-2][0-9]|3[01])#', $input) ? $input : FALSE;}
+	),
     'vehicule_FK' => FILTER_SANITIZE_NUMBER_INT,
     'del' => FILTER_SANITIZE_STRING
 );
 $post = filter_input_array(INPUT_POST, $args);
 $act = filter_input(INPUT_GET, "act", FILTER_SANITIZE_STRING);
 $nullerror = "La page ne doit être atteinte que via les inputs fournis";
+
+var_dump($post);
 
 //Contrôle que la page est bien accédée via une autre page (-> $_POST non-nul)
 if (is_null($post)) {
