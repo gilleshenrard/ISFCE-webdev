@@ -58,6 +58,7 @@ switch ($act) {
         }
         break;
     
+        
     case "edit":     // Edition d'une réparation
         if(!in_array(FALSE, $post)){
             //si aucune session ouverte, n'applique pas les changements
@@ -73,6 +74,7 @@ switch ($act) {
         }
         break;
     
+        
     case "del":          // Suppression réparation
         if (!is_null($post)) {
             //si aucune session ouverte, n'applique pas les changements
@@ -88,6 +90,7 @@ switch ($act) {
         }
         break;
     
+        
     default:
         break;
 }

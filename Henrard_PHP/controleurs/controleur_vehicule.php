@@ -35,7 +35,7 @@ if (!is_null($post) && isset($post['del'])) {
     $act="del";
 }
 else {
-    //Sinon, nettoyage de 'del' dans l'array post
+    //Sinon, nettoyage de 'del' dans l'array post pour ne pas parasiter le filtre
     unset($post['del']);
 }
 
@@ -61,6 +61,7 @@ switch ($act){
             }
             break;
 
+            
     case "edit":    //Edition de vehicule
             //Si formulaire non-vide recu et pas d'erreur, update dans la DB
             if (!is_null($post)){
@@ -82,6 +83,7 @@ switch ($act){
             }
             break;
     
+            
     case "new":     //Nouveau vehicule
             $rep = array();
             if(!is_null($post)){
@@ -108,6 +110,7 @@ switch ($act){
             }
             break;
     
+            
     case "del": //Suppression d'un véhicule
         if (!is_null($post)) {
             //si aucune session ouverte, n'applique pas les changements
@@ -127,6 +130,7 @@ switch ($act){
         }
         break;
 
+        
     default:
         throw new Exception($nullerror);
         break;
