@@ -6,7 +6,6 @@ $opt = array(
     'password' => FILTER_SANITIZE_STRING
 );
 $post = filter_input_array(INPUT_POST, $opt);
-$act = filter_input(INPUT_GET, 'act', FILTER_SANITIZE_STRING);
 
 //Vérification qu'aucun champ n'a été laissé à vide
 if ($act=="connexion" && (is_null($post) || in_array('', $post))) {

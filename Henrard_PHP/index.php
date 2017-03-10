@@ -2,6 +2,7 @@
 session_start();
 
 $page = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_STRING);
+$act = filter_input(INPUT_GET, 'act', FILTER_SANITIZE_STRING);
 ?>
 
 <!DOCTYPE html>
@@ -44,7 +45,14 @@ $page = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_STRING);
             include './vues/erreur.php';
         }
         catch (Exception $e){
-            include './vues/erreur.php';
+            if ($act=="connexion") {
+                //Si l'erreur vient du header, traitement dans un script
+                //      plutôt qu'une page
+                include './vues/connexion_exception.php';
+            }
+            else {
+                include './vues/erreur.php';
+            }
         }
 
         echo "<hr>";
