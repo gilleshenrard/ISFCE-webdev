@@ -89,7 +89,7 @@ switch ($act) {
 //Si session active
 if (isset($_SESSION) && isset($_SESSION['login'])) {
     //Script jQuery spécialisé pour la validation front-end des réparations
-    echo '<link type="text/javascript" href="./controleurs/scripts/reparation.js" />';
+    echo "<script src='vues/scripts/reparation.js' type='text/javascript'></script>";
 }
 
 //Affichage

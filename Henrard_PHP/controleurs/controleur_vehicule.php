@@ -129,7 +129,7 @@ switch ($act){
 //Si session active
 if (isset($_SESSION) && isset($_SESSION['login'])) {
     //Script jQuery spécialisé pour la validation front-end des véhicules
-    echo "<script src='controleurs/scripts/vehicule.js' type='text/javascript'></script>";
+    echo "<script src='vues/scripts/vehicule.js' type='text/javascript'></script>";
 }
 
 //Prépare les options du menu déroulant pour les types de véhicules

@@ -11,4 +11,4 @@
     </form>
 </div>
 
-<script type="text/javascript" src="./controleurs/scripts/connexion.js"></script>
+<script type="text/javascript" src="./vues/scripts/connexion.js"></script>
