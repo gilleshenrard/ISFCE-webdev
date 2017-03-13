@@ -43,7 +43,7 @@ $(document).ready(function() {
      * Structure : n'accepte que les alphanumériques et les espaces
      */
     $("#input_marque").focusout(function () {
-        checkValues(/^[a-zA-z0-9 ]+$/, "marque");
+        checkValues(/^[a-zA-Z0-9 ]+$/, "marque");
     });
     
     /**
@@ -51,7 +51,7 @@ $(document).ready(function() {
      * Structure : n'accepte que les alphanumériques et les espaces
      */
     $("#input_modele").focusout(function () {
-        checkValues(/^[a-zA-z0-9 ]+$/, "modele");
+        checkValues(/^[a-zA-Z0-9 ]+$/, "modele");
     });
     
     /**
@@ -61,7 +61,7 @@ $(document).ready(function() {
     $("#validate_vehicule").click(function () {
         checkValues(/^([0-9]{5}-){3}[0-9]{5}$/, "chassis");
         checkValues(/^(1-)?[a-zA-Z]{3}-[0-9]{3}$/, "plaque");
-        checkValues(/^[a-zA-z0-9 ]+$/, "marque");
-        checkValues(/^[a-zA-z0-9 ]+$/, "modele");
+        checkValues(/^[a-zA-Z0-9 ]+$/, "marque");
+        checkValues(/^[a-zA-Z0-9 ]+$/, "modele");
     });
 });
