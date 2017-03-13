@@ -5,6 +5,7 @@
 class Db{
     private static $connection;
     private $table;
+    private $columns;
     
     /**
      * Construit un nouvel objet Db et initialise le nom de la table
@@ -15,12 +16,13 @@ class Db{
         }
         else{
             $this->table = NULL;
+            $this->columns = NULL;
         }
     }
 
     /**
      * Lance une connexion à la DB si aucune n'est en cours
-     * @return type
+     * @return PDO
      */
     public function connect(){
         // if no connection exist to the specified database, create a one
@@ -33,7 +35,7 @@ class Db{
     
     /**
      * Vérifie si la table envoyée est correcte et assigne sa valeur si oui
-     * @param type $str
+     * @param string $str
      * @throws Exception
      */
     public function set_table($str){
@@ -42,34 +44,42 @@ class Db{
         }
         
         $this->table = $str;
+        $this->columns = $this->get_tablecolumns_db();
     }
     
     /**
      * Retourne le nom de la table utilisée
-     * @return type
+     * @return string
      */
     public function get_table(){
         return $this->table;
     }
 
     /**
-     * Vérifie si la table et la colonne envoyés existent
-     * @param type $table
-     * @param type $param
-     * @return boolean
-     * @throws Exception
+     * Retourne les colonnes contenues dans la table
+     * @return array
+     * @throws PDOException
      */
-    private function get_tablecolumns(){
+    private function get_tablecolumns_db(){
         //Récupération de tous les noms de colonne de la table
         $stmt = Db::$connection->prepare("DESCRIBE ". $this->get_table());
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_COLUMN);
     }
+    
+    /**
+     * Retourne les colonnes sans faire appel à la DB
+     * @return array
+     */
+    public function get_columns(){
+        return $this->columns;
+    }
 
     /**
      * Liste les lignes d'une table
-     * @return type
+     * @return array
      * @throws Exception
+     * @throws PDOException
      */
     public function list_table(){
         if ($this->get_table()==NULL) {
@@ -87,9 +97,9 @@ class Db{
     
     /**
      * Recherche une ligne de la table via la colonne envoyée
-     * @param type $value
-     * @param type $key
-     * @param type $fetchall
+     * @param string $value
+     * @param string $key
+     * @param boolean $fetchall
      * @return type
      * @throws Exception
      */
@@ -97,7 +107,7 @@ class Db{
         if ($this->get_table()==NULL) {
             throw new Exception("Aucune table sélectionnée");
         }
-        if (!in_array($key, $this->get_tablecolumns())) {
+        if (!in_array($key, $this->get_columns())) {
             throw new Exception($key." n'est pas une colonne de la table ".$this->get_table());
         }
         
@@ -122,27 +132,26 @@ class Db{
     
     /**
      * Recherche la valeur fournie dans toutes les valeurs possibles de la table
-     * @param type $str
-     * @return type
+     * @param string $str
+     * @return array
      * @throws Exception
      */
     public function searchAll($str){
         if ($this->get_table()==NULL) {
             throw new Exception("Aucune table sélectionnée");
         }
-        $columns = $this->get_tablecolumns();
 
         //Préparation de la query string
         //      -> recherche de $str dans toutes les colonnes
         $sql = "SELECT * FROM ".$this->get_table()." WHERE ";
-        foreach ($columns as $col) {
+        foreach ($this->get_columns() as $col) {
             $sql.= ":".$col." LIKE ".$col." OR ";
         }
         $sql = rtrim($sql," OR ");
         
         //Préparation de la query elle-même
         $stmt2 = Db::$connection->prepare($sql);
-        foreach ($columns as $key) {
+        foreach ($this->get_columns() as $key) {
             $stmt2->bindParam(":".$key, $str);
         }
 
@@ -153,15 +162,15 @@ class Db{
     
     /**
      * Supprime toutes les lignes dont le paramètre corresponde à la valeur envoyée
-     * @param type $str
-     * @param type $param
+     * @param string $value
+     * @param string $key
      * @throws Exception
      */
     public function delete($value, $key){
         if ($this->get_table()==NULL) {
             throw new Exception("Aucune table sélectionnée");
         }
-        if (!in_array($key, $this->get_tablecolumns())) {
+        if (!in_array($key, $this->get_columns())) {
             throw new Exception($key." n'est pas une colonne de la table ".$this->get_table());
         }
         
@@ -175,19 +184,18 @@ class Db{
 
     /**
      * Update une ligne de la table avec les données reçues
-     * @param type $array
+     * @param array $array
      * @throws Exception
      */
     public function update($array){
         if ($this->get_table()==NULL) {
             throw new Exception("Aucune table sélectionnée");
         }
-        $columns = $this->get_tablecolumns();
         
         //Préparation de la string query sql
         //      UPDATE table SET key1 = value1, key2 = value2 WHERE id LIKE valueid
         $sql = "UPDATE ".$this->get_table()." SET ";
-        foreach ($columns as $col) {
+        foreach ($this->get_columns() as $col) {
             if ($col != 'id') {   
                 $sql.= $col." = :".$col.", ";
             }
@@ -197,7 +205,7 @@ class Db{
         
         //Préparation de la query elle-même
         $stmt = Db::$connection->prepare($sql);
-        foreach ($columns as $col) {
+        foreach ($this->get_columns() as $col) {
             $stmt->bindParam(":".$col, $array[$col]);
         }
         
@@ -215,19 +223,18 @@ class Db{
         if ($this->get_table()==NULL) {
             throw new Exception("Aucune table sélectionnée");
         }
-        $columns = $this->get_tablecolumns();
 
         //Préparation de la string query
         //      INSERT INTO table (key1, key2) VALUES (value1, value2)
         $sql = "INSERT INTO ".$this->get_table()." (";
-        foreach ($columns as $col) {
+        foreach ($this->get_columns() as $col) {
             if ($col != 'id') {
                 $sql.= $col.", ";
             }
         }
         $sql = rtrim($sql,", ");
         $sql.= ") VALUES (";
-        foreach ($columns as $col) {
+        foreach ($this->get_columns() as $col) {
             if ($col != 'id') {
                 $sql.= ":".$col.", ";
             }
@@ -239,7 +246,7 @@ class Db{
         
         //Préparation de la query elle-même
         $stmt = Db::$connection->prepare($sql);
-        foreach ($columns as $col) {
+        foreach ($this->get_columns() as $col) {
             if ($col != 'id') {
                 $stmt->bindParam(":".$col, $array[$col]);
             }
