@@ -29,7 +29,7 @@
 
             <div class="form-group has-feedback" id='group_date'>
                 <label for="input_date">Date</label>
-                <input type="text" id="input_date" name="date" value="<?php echo $post['date'];?>" class="form-control" />
+                <input type="date" id="input_date" name="date" value="<?php echo $post['date'];?>" class="form-control" />
                 <span class="glyphicon form-control-feedback" id="fb_date"></span>
                 <span id="tip_date" class="help-block small hidden">La date doit être au format YYYY-MM-DD et les valeurs doivent être correctes</span>
             </div>
