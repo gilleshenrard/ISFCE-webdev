@@ -15,7 +15,6 @@ if ($act=="connexion" && (is_null($post) || in_array('', $post))) {
 //Connexion à la DB
 include_once './modeles/modele_db.php';
 $db_users = new Db("utilisateurs");
-$db_users->connect();
 
 //création de la structure de la barre de navigation
 echo '<nav class="navbar navbar-inverse navbar-fixed-top">';
