@@ -39,22 +39,6 @@ $(document).ready(function() {
     });
     
     /**
-     * Valide la valeur de la marque
-     * Structure : n'accepte que les alphanumériques et les espaces
-     */
-    $("#input_marque").focusout(function () {
-        checkValues(/^[a-zA-Z0-9 ]+$/, "marque");
-    });
-    
-    /**
-     * Valide la valeur du modèle
-     * Structure : n'accepte que les alphanumériques et les espaces
-     */
-    $("#input_modele").focusout(function () {
-        checkValues(/^[a-zA-Z0-9 ]+$/, "modele");
-    });
-    
-    /**
      * Revérifie les valeurs des champs au moment de la validation
      *      (Redondant, mais au cas où)
      */
