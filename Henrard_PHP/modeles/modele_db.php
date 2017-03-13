@@ -44,7 +44,6 @@ class Db{
         if (!in_array($str, array("vehicules", "reparations", "utilisateurs"))) {
             throw new Exception("Table ".$str." non-trouvée");
         }
-        
         $this->table = $str;
     }
     
@@ -194,7 +193,7 @@ class Db{
         }
         
         //Préparation de la string query sql
-        //      UPDATE table SET key1 = value1, key2 = value2 WHERE id LIKE valueid
+        //      UPDATE table SET key1 = :value1, key2 = :value2 WHERE id LIKE :valueid
         $sql = "UPDATE ".$this->get_table()." SET ";
         foreach ($this->get_columns() as $col) {
             if ($col != 'id') {   
