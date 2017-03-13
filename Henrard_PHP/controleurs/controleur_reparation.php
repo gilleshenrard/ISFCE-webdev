@@ -12,7 +12,7 @@ function customCheckDate($input){
     else {
         //transforme la date au format yyyy-mm-dd en array et la vérifie avec checkdate()
         $inputInt = array_map('intval', explode('-', $input));
-        return checkdate($inputInt[1], $inputInt[2], $inputInt[0]) ? $inputInt : FALSE;
+        return checkdate($inputInt[1], $inputInt[2], $inputInt[0]) ? $input : FALSE;
     }
 }
 
@@ -53,17 +53,12 @@ $db_reparations->connect();
 
 switch ($act) {
     case "new":     // Nouvelle réparation
-        // Variable temporaire pour simplifier la vérification des filtres
+        // Vérifie les filtres avec une variable temporaire
         $eval = $post;
         unset($eval['id']);
-        //Si pas d'erreur ou de valeur vide (auquel cas, ne va pas commit dans la DB)
         if (!in_array(FALSE, $eval)) {
             //si aucune session ouverte, n'applique pas les changements
-            //      (le style d'implémentation fait qu'aucune exception
-            //       ne peut être lancée)
             if (isset($_SESSION) && isset($_SESSION["login"])) {
-                //Ajout dans la DB + récupération de l'ID
-                //  + lien vers la page d'édition, en cas de validation du formulaire
                 $newid = $db_reparations->add($post);
                 $post['id']=$newid;
             }
@@ -75,10 +70,7 @@ switch ($act) {
     case "edit":     // Edition d'une réparation
         if(!in_array(FALSE, $post)){
             //si aucune session ouverte, n'applique pas les changements
-            //      (le style d'implémentation fait qu'aucune exception
-            //       ne peut être lancée)
             if (isset($_SESSION) && isset($_SESSION["login"])) {
-                //update dans la DB
                 $db_reparations->update($post);
             }
         }
@@ -91,11 +83,12 @@ switch ($act) {
     case "del":          // Suppression réparation
         if (!is_null($post)) {
             //si aucune session ouverte, n'applique pas les changements
-            //      (le style d'implémentation fait qu'aucune exception
-            //       ne peut être lancée)
             if (isset($_SESSION) && isset($_SESSION["login"])) {
                 $db_reparations->delete($post['id'], 'id');
                 header('Location: ?page=list');
+            }
+            else {
+                throw new Exception("Vous devez être connecté pour pouvoir supprimer une réparation");
             }
         }
         else {
@@ -108,7 +101,6 @@ switch ($act) {
         break;
 }
 
-//Si session active
 if (isset($_SESSION) && isset($_SESSION['login'])) {
     //Script jQuery spécialisé pour la validation front-end des réparations
     echo "<script src='vues/scripts/reparation.js' type='text/javascript'></script>";
