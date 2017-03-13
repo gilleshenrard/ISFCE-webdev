@@ -1,21 +1,4 @@
 <?php
-/**
- * Vérifie que le formatage et les valeurs de la date sont corrects
- * @param string $input
- * @return boolean
- */
-function customCheckDate($input){
-    //Vérifie si le formatage de la date est correct
-    if(!preg_match('#^[0-9]{4}-[0-9]{2}-[0-9]{2}$#', $input)){
-        return FALSE;
-    }
-    else {
-        //transforme la date au format yyyy-mm-dd en array et la vérifie avec checkdate()
-        $inputInt = array_map('intval', explode('-', $input));
-        return checkdate($inputInt[1], $inputInt[2], $inputInt[0]) ? $input : FALSE;
-    }
-}
-
 //Récupération et assainissement de $_POST et $_GET
 $args = array(
     'id' => FILTER_SANITIZE_NUMBER_INT,
@@ -25,7 +8,17 @@ $args = array(
     'del' => FILTER_SANITIZE_STRING,
     'date' => array(
 		'filter' => FILTER_CALLBACK,
-                'options' => 'customCheckDate')
+                'options' => function ($input){
+                                //Vérifie si le formatage de la date est correct
+                                if(!preg_match('#^[0-9]{4}-[0-9]{2}-[0-9]{2}$#', $input)){
+                                    return FALSE;
+                                }
+                                else {
+                                    //transforme la date au format yyyy-mm-dd en array et la vérifie avec checkdate()
+                                    $inputInt = array_map('intval', explode('-', $input));
+                                    return checkdate($inputInt[1], $inputInt[2], $inputInt[0]) ? $input : FALSE;
+                                }
+                            })
 );
 $post = filter_input_array(INPUT_POST, $args);
 $act = filter_input(INPUT_GET, "act", FILTER_SANITIZE_STRING);
