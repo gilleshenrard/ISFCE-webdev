@@ -19,7 +19,7 @@
             <div class="form-group has-feedback" id='group_intervention'>
                 <label for="input_intervention">Intervention</label>
                 <input type="text" id="input_intervention" name="intervention" value="<?php echo $post['intervention'];?>" class="form-control" placeholder="Intervention" />
-				<span class="glyphicon form-control-feedback" id="fb_intervention"></span>
+                <span class="glyphicon form-control-feedback" id="fb_intervention"></span>
                 <span id="tip_intervention" class="help-block small hidden" hidden="true">L'intitulé de l'intervention doit être alphanumérique</span>
             </div>
 
@@ -31,7 +31,7 @@
             <div class="form-group has-feedback" id='group_date'>
                 <label for="input_date">Date</label>
                 <input type="date" id="input_date" name="date" value="<?php echo $post['date'];?>" class="form-control" />
-				<span class="glyphicon form-control-feedback" id="fb_date"></span>
+                <span class="glyphicon form-control-feedback" id="fb_date"></span>
                 <span id="tip_date" class="help-block small hidden" hidden="true">La date doit être alphanumérique</span>
             </div>
             
