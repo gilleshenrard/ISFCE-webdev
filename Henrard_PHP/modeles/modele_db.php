@@ -13,6 +13,8 @@ class Db{
     function __construct($table=NULL) {
         if (isset($table)) {
             $this->set_table($table);
+            $this->connect();
+            $this->columns = $this->get_tablecolumns_db();
         }
         else{
             $this->table = NULL;
@@ -44,7 +46,6 @@ class Db{
         }
         
         $this->table = $str;
-        $this->columns = $this->get_tablecolumns_db();
     }
     
     /**
@@ -62,7 +63,7 @@ class Db{
      */
     private function get_tablecolumns_db(){
         //Récupération de tous les noms de colonne de la table
-        $stmt = Db::$connection->prepare("DESCRIBE ". $this->get_table());
+        $stmt = Db::$connection->prepare("DESCRIBE ".$this->get_table());
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_COLUMN);
     }
@@ -241,8 +242,6 @@ class Db{
         }
         $sql = rtrim($sql,", ");
         $sql.=")";
-        
-        var_dump($sql);
         
         //Préparation de la query elle-même
         $stmt = Db::$connection->prepare($sql);
