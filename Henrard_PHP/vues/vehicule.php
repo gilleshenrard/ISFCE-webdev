@@ -23,7 +23,7 @@
                 <label for="input_marque">Marque</label>
                 <input type="text" id="input_marque" name="marque" value="<?php echo $post['marque'];?>" class="form-control" placeholder="Marque" />
 				<span class="glyphicon form-control-feedback" id="fb_marque"></span>
-                <span id="tip_marque" class="help-block small hidden">Le modèle ne peut contenir que des caractères alphanumériques et les espaces</span>
+                <span id="tip_marque" class="help-block small hidden">La marque ne peut contenir que des caractères alphanumériques et les espaces</span>
             </div>
 
             <div class="form-group has-feedback" id="group_modele">
