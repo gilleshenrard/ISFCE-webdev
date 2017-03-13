@@ -10,14 +10,14 @@ function checkValues(regex, id){
         $("#fb_"+id).removeClass("glyphicon-remove");
         $("#fb_"+id).addClass("glyphicon-ok");
         $("#tip_"+id).addClass("hidden");
-        $("#validate_vehicule").prop("disabled",false);
+        return true;
     } else {
         $("#group_"+id).removeClass("has-success");
         $("#group_"+id).addClass("has-error");
         $("#fb_"+id).removeClass("glyphicon-ok");
         $("#fb_"+id).addClass("glyphicon-remove");
         $("#tip_"+id).removeClass("hidden");
-        $("#validate_vehicule").prop("disabled",true);
+        return false;
     }
 }
 
@@ -43,7 +43,10 @@ $(document).ready(function() {
      *      (Redondant, mais au cas où)
      */
     $("#validate_vehicule").click(function () {
-        checkValues(/^([0-9]{5}-){3}[0-9]{5}$/, "chassis");
-        checkValues(/^(1-)?[a-zA-Z]{3}-[0-9]{3}$/, "plaque");
+        if(!checkValues(/^([0-9]{5}-){3}[0-9]{5}$/, "chassis") || !checkValues(/^(1-)?[a-zA-Z]{3}-[0-9]{3}$/, "plaque")){
+            return false;
+        }
+        else
+            return true;
     });
 });
