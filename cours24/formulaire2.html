@@ -26,13 +26,15 @@
             <h1>Formulaire2 : plats à emporter</h1>
             <form id="form2" method="POST" action="formulaire2_reception.php" class="well">
 
+				<!--Définition du champ Identité-->
 				<fieldset id="fs_identite">
 					<legend>Votre identité</legend>
-					<div class="form-group" id="group_nom">
+					<div class="form-group has-feedback" id="group_nom">
 						<label class="form-label" for="input_nom">Nom</label>
 						<div class="input-group">
 							<span class="input-group-addon" id="addon_nom"><span class="glyphicon glyphicon-user"></span></span>
 							<input type="text" id="input_nom" name="nom" class="form-control" placeholder="Votre Nom" />
+							<span class="help-block small hidden" id="tip_nom">Le nom doit commencer par Mr, Mme, Mlle, ou bien Dr</span>
 						</div>
 					</div>
 					<div class="form-group has-feedback" id="group_tel">
@@ -46,9 +48,10 @@
 					</div>
 				</fieldset>
 				
-				<div class="panel panel-primary">
+				<div class="panel panel-primary" id="panel_order">
 					<div class="panel-heading">Votre Commande</div>
 					<div class="panel-body">
+						<!--Définition du champ Vitesse de livraison-->
 						<div class="form-group has-feedback" id="group_speed">
 							<label class="form-label" for="input_speed">Vitesse de livraison</label>
 							<select class="form-control" id="input_speed" name="speed">
@@ -57,23 +60,39 @@
 								<option value="eclair">Eclair (maximum 30 minutes)</option>
 							</select>
 						</div>
-						<div class="form-check">
-							<label class="form-check-label">
-								<input class="form-check-input" type="checkbox" name="menu" value="entree" />
-								Entrée
-							</label>
+						
+						<!--Définition des checkboxes de Menu-->
+						<div class="form-group" id="group_menu">
+							<label class="control-label">Menu</label>
+							<div class="form-check">
+								<label class="form-check-label">
+									<input class="form-check-input" type="checkbox" name="menu" value="entree" />
+									Entrée
+								</label>
+							</div>
+							<div class="form-check">
+								<label class="form-check-label">
+									<input class="form-check-input" type="checkbox" name="menu" value="plat" />
+									Plat
+								</label>
+							</div>
+							<div class="form-check">
+								<label class="form-check-label">
+									<input class="form-check-input" type="checkbox" name="menu" value="dessert" />
+									Dessert
+								</label>
+							</div>
+							<span class="help-block small hidden" id="tip_menu"></span>
 						</div>
-						<div class="form-check">
-							<label class="form-check-label">
-								<input class="form-check-input" type="checkbox" name="menu" value="plat" />
-								Plat
-							</label>
-						</div>
-						<div class="form-check">
-							<label class="form-check-label">
-								<input class="form-check-input" type="checkbox" name="menu" value="dessert" />
-								Dessert
-							</label>
+						
+						<!--Définition des radio buttons pour les boissons-->
+						<div class="form-group has-feedback" id="group_drink">
+							<label class="control-label">Boisson</label>
+							<div class="radio">
+								<label><input type="radio" name="drink" value="soft"/>Soft</label>
+								<label><input type="radio" name="drink" value="alcool"/>Alcool</label>
+							</div>
+							<span class="help-block small hidden" id="tip_drink">Choisissez soft ou alcool</span>
 						</div>
 					</div>
 				</div>
@@ -96,7 +115,87 @@
 						$("#group_speed").addClass("has-success");
 					}
 					
+					switch($('input[name="menu"]:checked').length){
+						case 0:		// 0 case cochée
+							$("#group_menu").removeClass("has-success");
+							$("#group_menu").removeClass("has-warning");
+							$("#group_menu").addClass("has-error");
+							$("#tip_menu").removeClass("hidden");
+							$("#tip_menu").text("Choisissez au moins une des possibilités");
+							break;
+						
+						case 1:		// 1 case cochée
+							$("#group_menu").removeClass("has-error");
+							$("#group_menu").removeClass("has-success");
+							$("#group_menu").addClass("has-warning");
+							$("#tip_menu").removeClass("hidden");
+							$("#tip_menu").text("A partir de deux choix, vous bénéficiez de -10%");
+							break;
+						
+						case 2:
+						case 3:		// 2 ou 3 cases cochées
+							$("#group_menu").removeClass("has-error");
+							$("#group_menu").removeClass("has-warning");
+							$("#group_menu").addClass("has-success");
+							$("#tip_menu").addClass("hidden");
+							break;
+						
+						default:
+							alert("Erreur au traitement des checkboxes");
+							break;
+					}
 					
+					if($('input[name="drink"]:checked').length < 1){
+						$("#group_drink").removeClass("has-success");
+						$("#group_drink").addClass("has-error");
+						$("#tip_drink").removeClass("hidden");
+					}
+					else{
+						$("#group_drink").removeClass("has-error");
+						$("#group_drink").addClass("has-success");
+						$("#tip_drink").addClass("hidden");
+					}
+				});
+				
+				$("#button2").click(function(){
+					var statut_actuel = $("#fs_identite").prop("disabled");
+					$("#fs_identite").prop("disabled", !statut_actuel);
+				});
+				
+				$("#button3").click(function(){
+					$("#panel_order").toggle(300);
+				});
+				
+				$("#button4").click(function(){
+					$(".form-check-input").prop("checked", false);
+				});
+				
+				$("#button5").click(function(){
+					$("input[value='alcool']").prop("checked", true);
+				});
+				
+				$("#button_submit").click(function(){
+					var regex_ok = /^Mr|Mme|Mlle/;
+					var regex_warning = /^Dr/;
+					
+					if(regex_ok.test($("#input_nom").val())){
+						$("#group_nom").removeClass("has_error");
+						$("#group_nom").removeClass("has_warning");
+						$("#group_nom").addClass("has_success");
+						$("#tip_nom").addClass("hidden");
+					}
+					else if(regex_warning.test($("#input_nom").val())){
+						$("#group_nom").removeClass("has_success");
+						$("#group_nom").removeClass("has_error");
+						$("#group_nom").addClass("has_warning");
+						$("#tip_nom").addClass("hidden");
+					}
+					else{
+						$("#group_nom").removeClass("has_success");
+						$("#group_nom").removeClass("has_warning");
+						$("#group_nom").addClass("has_error");
+						$("#tip_nom").removeClass("hidden");
+					}
 				});
             }); // FIN DES SCRIPTS, NE PAS MODIFIER     
         </script>
