@@ -10,6 +10,7 @@ function customCheckDate($input){
         return FALSE;
     }
     else {
+        //transforme la date au format yyyy-mm-dd en array et la vérifie avec checkdate()
         $inputInt = array_map('intval', explode('-', $input));
         return checkdate($inputInt[1], $inputInt[2], $inputInt[0]) ? $inputInt : FALSE;
     }
