@@ -114,14 +114,11 @@ switch ($act){
     case "del": //Suppression d'un véhicule
         if (!is_null($post)) {
             //si aucune session ouverte, n'applique pas les changements
-            //      (le style d'implémentation fait qu'aucune exception
-            //       ne peut être lancée)
             if (isset($_SESSION) && isset($_SESSION["login"])) {
                 //Suppression des réparations liées, puis suppression du véhicule
                 $db_reparations->delete($post['id'], "vehicule_FK");
                 $db_vehicules->delete($post['id'], 'id');
             }
-
             //Redirection par requête http vers la page de liste
             header('Location: ?page=list');
         }
