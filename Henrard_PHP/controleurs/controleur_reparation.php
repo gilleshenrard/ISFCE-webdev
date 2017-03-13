@@ -11,7 +11,7 @@ function customCheckDate($input){
     }
     else {
         $inputInt = array_map('intval', explode('-', $input));
-        return check_date($inputInt[1], $inputInt[2], $inputInt[0]) ? $inputInt : FALSE;
+        return checkdate($inputInt[1], $inputInt[2], $inputInt[0]) ? $inputInt : FALSE;
     }
 }
 
