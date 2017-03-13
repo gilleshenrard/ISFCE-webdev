@@ -45,7 +45,5 @@ $(document).ready(function() {
     $("#validate_vehicule").click(function () {
         checkValues(/^([0-9]{5}-){3}[0-9]{5}$/, "chassis");
         checkValues(/^(1-)?[a-zA-Z]{3}-[0-9]{3}$/, "plaque");
-        checkValues(/^[a-zA-Z0-9 ]+$/, "marque");
-        checkValues(/^[a-zA-Z0-9 ]+$/, "modele");
     });
 });
