@@ -14,9 +14,10 @@
     <!--Formulaire d'affichage/édition de réparation-->
     <div class="col-md-5 row">
         <form method="post" action="?page=reparation&act=<?php echo $act;?>">
-            <input type="hidden" id="id_reparation" name="id" value="<?php echo $post['id'];?>" class="form-control" />
+            <input type="hidden" name="id" value="<?php echo $post['id'];?>" />
+            <input type="hidden" name="vehicule_FK" value="<?php echo $post['vehicule_FK'];?>" />
 
-            <div class="form-group" id='group_intervention'>
+            <div class="form-group">
                 <label for="input_intervention">Intervention</label>
                 <input type="text" id="input_intervention" name="intervention" value="<?php echo $post['intervention'];?>" class="form-control" placeholder="Intervention" />
             </div>
@@ -32,8 +33,6 @@
                 <span class="glyphicon form-control-feedback" id="fb_date"></span>
                 <span id="tip_date" class="help-block small hidden">La date doit être au format YYYY-MM-DD et les valeurs doivent être correctes</span>
             </div>
-            
-            <input type="hidden" name="vehicule_FK" value="<?php echo $post['vehicule_FK'];?>" />
 
             <div class="form-group">
                 <button type="submit" id="validate_reparation" class="btn btn-primary" <?php echo $input_disabled;?>>
