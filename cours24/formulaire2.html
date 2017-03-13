@@ -26,7 +26,57 @@
             <h1>Formulaire2 : plats à emporter</h1>
             <form id="form2" method="POST" action="formulaire2_reception.php" class="well">
 
-                <!--CONTENU DU FORMULAIRE A PLACER ICI-->
+				<fieldset id="fs_identite">
+					<legend>Votre identité</legend>
+					<div class="form-group" id="group_nom">
+						<label class="form-label" for="input_nom">Nom</label>
+						<div class="input-group">
+							<span class="input-group-addon" id="addon_nom"><span class="glyphicon glyphicon-user"></span></span>
+							<input type="text" id="input_nom" name="nom" class="form-control" placeholder="Votre Nom" />
+						</div>
+					</div>
+					<div class="form-group has-feedback" id="group_tel">
+						<label class="form-label" for="input_tel">Téléphone</label>
+						<div class="input-group">
+							<span class="input-group-addon" id="addon1_tel"><span>Numéro préfixé</span></span>
+							<input type="tel" id="input_tel" name="tel" class="form-control" placeholder="(+32)123456789" />
+							<span class="input-group-addon" id="addon2_tel"><span class="glyphicon glyphicon-earphone"></span></span>
+						</div>
+						<span id="tip_tel" class="help-block small hidden">Préfixe (+32) ou (+33), suivi de 9 chiffres</span>
+					</div>
+				</fieldset>
+				
+				<div class="panel panel-primary">
+					<div class="panel-heading">Votre Commande</div>
+					<div class="panel-body">
+						<div class="form-group has-feedback" id="group_speed">
+							<label class="form-label" for="input_speed">Vitesse de livraison</label>
+							<select class="form-control" id="input_speed" name="speed">
+								<option value="normal">Normal (maximum 2 heures)</option>
+								<option value="rapide">Rapide (maximum 1 heure)</option>
+								<option value="eclair">Eclair (maximum 30 minutes)</option>
+							</select>
+						</div>
+						<div class="form-check">
+							<label class="form-check-label">
+								<input class="form-check-input" type="checkbox" name="menu" value="entree" />
+								Entrée
+							</label>
+						</div>
+						<div class="form-check">
+							<label class="form-check-label">
+								<input class="form-check-input" type="checkbox" name="menu" value="plat" />
+								Plat
+							</label>
+						</div>
+						<div class="form-check">
+							<label class="form-check-label">
+								<input class="form-check-input" type="checkbox" name="menu" value="dessert" />
+								Dessert
+							</label>
+						</div>
+					</div>
+				</div>
 
                 <button id="button_submit" type="SUBMIT" class="btn btn-success" disabled="disabled">Envoyer ce formulaire</button>
             </form>
@@ -35,19 +85,19 @@
 
         <script type="text/javascript">
             $(document).ready(function () { // DEBUT DES SCRIPTS, NE PAS MODIFIER
-
-                // Tous vos scripts ICI - utiliser Source/Format
-
-
-
-
-
-
-
-
-
-
-
+				$("#button1").click(function(){
+					
+					if($("#input_speed").val() === "Eclair"){
+						alert("Impossible de choisir la livraison éclair actuellement");
+						$("#group_speed").removeClass("has-success");
+						return false;
+					}
+					else{
+						$("#group_speed").addClass("has-success");
+					}
+					
+					
+				});
             }); // FIN DES SCRIPTS, NE PAS MODIFIER     
         </script>
 
