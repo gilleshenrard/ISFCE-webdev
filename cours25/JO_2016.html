@@ -64,8 +64,50 @@
 
         <script type="text/javascript">
             
-            // Tous vos scripts ICI
-            
+            $(document).ready(function(){
+				/**
+				 * Controle le comportement d'un simple clic sur un titre h3
+				 */
+				$("h3").click(function(){
+					alert($(this).text());
+				});
+				
+				/**
+				 * Controle le clic sur le bouton de changement du jumbotron
+				 */
+				$("#button_jumbotron").click(function(){
+					$("#jumbotron h6").html("<h1>Jeux Olympiques <small>2016</small></h1>");
+				});
+				
+				/**
+				 * Controle le double-clic sur le bouton Belgique
+				 */
+				$("#button_belgique").dblclick(function(){
+					$("#input_vainqueur").val("Belgique");
+					$("#url_wikipedia").text("Lien wikipedia du pays vainqueur (Belgique)");
+					$("#url_wikipedia").prop("href", "https://fr.wikipedia.org/wiki/Belgique");
+				});
+				
+				/**
+				 * Controle le double-clic sur le bouton Argentine
+				 */
+				$("#button_argentine").dblclick(function(){
+					$("#input_vainqueur").val("Argentine");
+					$("#url_wikipedia").text("Lien wikipedia du pays vainqueur (Argentine)");
+					$("#url_wikipedia").prop("href", "https://fr.wikipedia.org/wiki/Argentine");
+				});
+				
+				/**
+				 * Controle le clic sur le titre du logo JO
+				 */
+				$("#titre_logo").click(function(){
+					$(this).after("L’identité visuelle des Jeux Rio 2016 s’inspire de la diversité harmonieuse, de l’énergie contagieuse des Brésiliens et de la nature exubérante de Rio. <br/>");
+				});
+				
+				$("#img_logo").click(function(){
+					$(this).remove();
+				});
+			});            
 
         </script>
 
