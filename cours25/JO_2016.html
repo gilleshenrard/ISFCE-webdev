@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+    <head>
+        <title>ISFCE JavaScript jQuery DOM</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
+        <script src="jquery-3.1.1.min/jquery-3.1.1.min.js"></script>
+        <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    </head>
+
+    <body class="container">
+
+        <!-- JUMBOTRON -->
+        <div id="jumbotron" class="jumbotron">
+            <h6>Jeux olympiques 2016</h6>
+        </div>
+        <h3>Edition du jombotron</h3>
+        <button id="button_jumbotron" class="btn btn-info">Changer le contenu HTML du jumbotron</button>
+        <br/>
+
+        <!-- PRONOSTIQUE -->
+        <h3 id="titre_pronostique">Votre pronostique pour le hockey</h3>
+        <span>Double-cliquez sur un pays pour remplir automatiquement la case du vainqueur et changer son lien wikipedia :</span>
+        <br/>
+        <button id="button_belgique">Belgique</button>
+        <button id="button_argentine">Argentine</button>
+        <br/><br/>
+
+        <form role="form">
+            <div id="group_vainqueur" class="form-group has-feedback">
+                <label for="input_vainqueur" class="control-label">Vainqueur de la finale</label>
+                <input id="input_vainqueur" type="text" class="form-control has-feedback" disabled>
+            </div>
+        </form>
+
+        <a id="url_wikipedia" href="http://www.lesoir.be">Lien wikipedia du pays vainqueur</a>
+
+
+        <!-- INFORMATIONS TICKETS -->
+        <h3>Information sur les tickets</h3>
+        <p id="rappel_tickets">N'oubliez pas d'acheter vos tickets sur internet !</p>
+
+
+        <!-- LOGO -->
+        <h4 id="titre_logo">Logo des JO</h4>
+        <img id="img_logo" src="images/logo_jo.jpg" class="img-responsive" style=" max-height: 100px;"/>
+
+        
+        <!--LISTE PAYS-->
+        <h3>Natation 200m : pays participants</h3>
+        <button id="button_europe" class="btn btn-success">Continent européen</button>      
+        <ul>
+            <li>USA</li>
+            <li>Japon</li>
+            <li class="europe">Hongrie</li>
+            <li>Afrique du sud</li>
+            <li class="europe">Danemark</li>
+            <li class="europe">Belgique</li> 
+        </ul>
+
+
+        <script type="text/javascript">
+            
+            // Tous vos scripts ICI
+            
+
+        </script>
+
+    </body>
+</html>
