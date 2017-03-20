@@ -60,7 +60,14 @@
             <li class="europe">Danemark</li>
             <li class="europe">Belgique</li> 
         </ul>
-
+		
+		<h3>Médaille</h3>
+		<form class="form-inline" method="post" action="#">
+			<div class="form-group has-feedback" id="group_medaille">
+				<input type="text" class="form-control" id="input_medaille" />
+			</div>
+			<button id="submit_medaille" type="submit" class="btn btn-primary">Valider</button>
+		</form>
 
         <script type="text/javascript">
             
@@ -104,8 +111,53 @@
 					$(this).after("L’identité visuelle des Jeux Rio 2016 s’inspire de la diversité harmonieuse, de l’énergie contagieuse des Brésiliens et de la nature exubérante de Rio. <br/>");
 				});
 				
+				/**
+				 * Controle le clic sur le logo JO
+				 */
 				$("#img_logo").click(function(){
 					$(this).remove();
+				});
+				
+				/**
+				 * Controle le passage de la souris sur le paragraphe de rappel
+				 */
+				$("#rappel_tickets").mouseenter(function(){
+					$(this).addClass("bg-success");
+				});
+				
+				/**
+				 * Controle le passage de la souris sur le paragraphe de rappel
+				 */
+				$("#rappel_tickets").mouseleave(function(){
+					$(this).removeClass("bg-success");
+				});
+				
+				/**
+				 * Colore le background du jumbotron en vert
+				 */
+				$(".jumbotron").attr("style", "background-color : green");
+				
+				/**
+				 * Controle le clic sur le bouton Europe
+				 */
+				$("#button_europe").click(function(){
+					$(".europe").toggleClass("bg-success");
+				});
+				
+				/**
+				 * Controle la validation du champ medaille
+				 */
+				$("#submit_medaille").click(function(){
+					var regex = /^(or|argent|bronze)$/;
+					if(regex.test($("#input_medaille"))){
+						$("#group_medaille").removeClass("has-error");
+						$("#group_medaille").addClass("has-success");
+					}
+					else{
+						$("#group_medaille").removeClass("has-error");
+						$("#group_medaille").addClass("has-failure");
+					}
+					return false;
 				});
 			});            
 
